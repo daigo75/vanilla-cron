@@ -68,7 +68,7 @@ class Schema {
 
 		// Create multi-column Indexes via SQL (not supported by Vanilla's 2.0 Database Class)
 		// Create Index for TimeFrame
-		$this->CreateIndex('cronjobshistory', 'IX_TimeFrame', array('StartedAt',
+		$this->CreateIndex('CronJobsHistory', 'IX_TimeFrame', array('StartedAt',
 																																'FinishedAt',));
 	}
 
