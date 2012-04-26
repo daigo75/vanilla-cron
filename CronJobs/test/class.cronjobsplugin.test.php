@@ -34,7 +34,7 @@ define('PATH_ROOT', dirname(__FILE__) . '/../../..');
 
 //define('PATH_ROOT', 'C:\XAMPP\htdocs\vanilla');
 
-var_dump(__FILE__);
+//var_dump(__FILE__);
 
 // 2. Include the bootstrap to configure the framework.
 require_once(PATH_ROOT . '/bootstrap.php');
