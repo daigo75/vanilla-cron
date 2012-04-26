@@ -19,7 +19,7 @@ define('DS', '/');
 	directory of Vanilla installation, which is three level up from current
 	location.
 */
-define('PATH_ROOT', dirname(__FILE__) . '../../../');
+define('PATH_ROOT', dirname(__FILE__) . '/../../..');
 
 /* IMPORTANT: Read if you're using a Symlink to point to plugin's directory!
  Comment the previous Define('PATH_ROOT') and uncomment the line below if you're
@@ -37,7 +37,7 @@ define('PATH_ROOT', dirname(__FILE__) . '../../../');
 var_dump(__FILE__);
 
 // 2. Include the bootstrap to configure the framework.
-require_once(PATH_ROOT . '/bootstrap.php');
+//require_once(PATH_ROOT . '/bootstrap.php');
 
 class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	protected $CronJobsPlugin;
