@@ -26,6 +26,7 @@ class Schema {
 	 * array('MyField ASC', 'MyOtherField DESC')).
 	 *
 	 * @return void
+	 */
 	protected function CreateIndex($TableName, $IndexName, $Fields) {
 		$Px = $this->Database->DatabasePrefix;
 
