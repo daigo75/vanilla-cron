@@ -96,7 +96,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	 * Sample test. Verify that internal Plugin variable has been initialized.
 	 */
 	public function testPluginSet() {
-		$this->assertNotNull($this->CronJobsPlugin, T('Plugin has not been instantiated.'));
+		$this->assertTrue(isset($this->CronJobsPlugin), T('Plugin has not been instantiated.'));
 	}
 
 	/**
