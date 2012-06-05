@@ -15,7 +15,7 @@
 	<php>
 		<const name="APPLICATION" value="Vanilla" />
 		<const name="DS" value="/" />
-		<const name="PATH_ROOT" value="/../../.." />
+		<const name="PATH_ROOT" value="../../.." />
 	</php>
 
 	<testsuite name="CronJob Plugin">
