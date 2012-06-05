@@ -6,7 +6,7 @@
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	processIsolation="false"
-	stopOnFailure="true"
+	stopOnFailure="false"
 	syntaxCheck="false"
 	verbose="true"
 	strict="true">
@@ -14,7 +14,7 @@
 	<testsuite name="CronJob Plugin">
 		<directory suffix="test.php">./</directory>
 	</testsuite>
-	
+
 	<logging>
 		<log type="coverage-clover" target="test/artifacts/phpunit/coverage.xml" />
 		<log type="junit" target="test/artifacts/phpunit/phpunit.xml" logIncompleteSkipped="true" />
