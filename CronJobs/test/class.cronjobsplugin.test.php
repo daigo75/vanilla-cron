@@ -37,7 +37,7 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 //var_dump(__FILE__);
 
 // 2. Include the bootstrap to configure the framework.
-require_once(PATH_ROOT . '/bootstrap.php');
+//require_once(PATH_ROOT . '/bootstrap.php');
 
 class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	protected $CronJobsPlugin;
@@ -67,7 +67,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 		if(!($e instanceof Exception)) {
 			return sprintf(T("Method %s->BuildExceptionMessage() called improperly. " .
 											 "Parameter \$e was expected to be an Exception, while it's a %s instead.\n" .
-											 "Backtracke: %s"),
+											 "Backtrace: %s"),
 											 get_class($this),
 											 get_class($e),
 											 print_r(debug_backtrace(), TRUE));
@@ -78,10 +78,28 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 									 $e->getTraceAsString());
 	}
 
+	protected function EnablePlugin($PluginName) {
+		$PluginManager = Gdn::PluginManager();
+		if(!$PluginManager->CheckPlugin($PluginName)){
+			$Validation = new Gdn_Validation();
+			if(Gdn::PluginManager()->EnablePlugin($PluginName, $Validation)){
+				//Success!
+			}
+			else {
+				//var_dump($Validation->Results());
+			}
+		}
+	}
+
 	/**
 	 * Test Suite initialization.
 	 */
 	protected function setUp() {
+		// Use function EnablePlugin() to enable all the plugins required, including
+		// the one to be tested.
+		$this->EnablePlugin('CronJobs');
+
+		// Instantiate the plugin to be tested.
 		$this->CronJobsPlugin = new CronJobsPlugin();
 	}
 
@@ -96,7 +114,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	 * Sample test. Verify that internal Plugin variable has been initialized.
 	 */
 	public function testPluginSet() {
-		$this->assertTrue(isset($this->CronJobsPlugin), T('Plugin has not been instantiated.'));
+		$this->assertNotNull($this->CronJobsPlugin, T('Plugin has not been instantiated.'));
 	}
 
 	/**
