@@ -16,8 +16,6 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 // Application Version depends on the Build, which sets it as an environment variable.
 define('APPLICATION_VERSION', getenv('VanillaVersion'));
 
-var_dump(APPLICATION_VERSION);
-
 /**
  * File Bootstrap.php, required to initialize Vanilla, is located in the root
  * directory of Vanilla installation, which is three level up from current
