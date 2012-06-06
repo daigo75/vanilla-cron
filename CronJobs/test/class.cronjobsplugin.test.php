@@ -37,7 +37,7 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 //var_dump(__FILE__);
 
 // 2. Include the bootstrap to configure the framework.
-//require_once(PATH_ROOT . '/bootstrap.php');
+require_once(PATH_ROOT . '/bootstrap.php');
 
 class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	protected $CronJobsPlugin;
