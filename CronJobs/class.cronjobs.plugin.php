@@ -169,6 +169,17 @@ class CronJobsPlugin extends Gdn_Plugin {
 	}
 
 	/**
+	 * Getter method for CronJobsList property.
+	 */
+	protected function GetCronJobsList() {
+		if(!isset($this->CronJobsList)) {
+			// Initialize Model for Cron Jobs List
+			$this->CronJobsList = new CronJobsListModel();
+		}
+		return $this->CronJobsList;
+	}
+
+	/**
 	* Plugin constructor
 	*
 	* This fires once per page load, during execution of bootstrap.php. It is a decent place to perform
@@ -177,9 +188,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*/
 	public function __construct() {
 		parent::__construct();
-
-		// Initialize Model for Cron Jobs List
-		$this->CronJobsList = new CronJobsListModel();
 	}
 
 	/**
@@ -310,7 +318,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			//}
 		}
 
-		$Sender->SetData('CronJobsDataSet', $this->CronJobsList->Get());
+		$Sender->SetData('CronJobsDataSet', $this->GetCronJobsList()->Get());
 
 		$Sender->Render($this->GetView('cronjobs_jobs_view.php'));
 	}
@@ -431,14 +439,14 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @Return True if registration was successful, False otherwise.
 	 */
 	public function RegisterCronJob(&$Object) {
-		return $this->CronJobsList->Add($Object);
+		return $this->GetCronJobsList()->Add($Object);
 	}
 
 	/**
 	 * Processes the list of Cron Jobs, executing them one by one.
 	 */
 	protected function _ProcessCronJobs() {
-		foreach ($this->CronJobsList->Get() as $Class => $Object) {
+		foreach ($this->GetCronJobsList()->Get() as $Class => $Object) {
 			// This check uses a global Validation function. A Validator is not
 			// used here as it would be overkill.
 			// NOTE: this is actually a second check, just to be on the safe side.
