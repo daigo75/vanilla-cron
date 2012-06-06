@@ -530,10 +530,10 @@ class CronJobsPlugin extends Gdn_Plugin {
 	/**
 	* Plugin cleanup
 	*
-	* This method is fired only once, immediately before the plugin is disabled, and is a great place to
+	* This method is fired only once, when the plugin is removed, and is a great place to
 	* perform cleanup tasks such as deletion of unsued files and folders.
 	*/
-	public function OnDisable() {
+	public function CleanUp() {
 		// Drop Database Objects created by the Plugin
 		require('install/schema.php');
 		Schema::Uninstall();
