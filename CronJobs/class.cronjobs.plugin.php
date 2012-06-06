@@ -178,10 +178,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 	public function __construct() {
 		parent::__construct();
 
-		if(Gdn::PluginManager()->CheckPlugin('CronJobs')) {
-			// Initialize Model for Cron Jobs List
-			$this->CronJobsList = new CronJobsListModel();
-		}
 	}
 
 	/**
@@ -199,6 +195,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 	}
 
 	public function PluginController_CronJobs_Create(&$Sender) {
+		// Initialize Model for Cron Jobs List
+		$this->CronJobsList = new CronJobsListModel();
 
 		/*
 		* If you build your views properly, this will be used as the <title> for your page, and for the header
