@@ -177,6 +177,9 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*/
 	public function __construct() {
 		parent::__construct();
+
+		// Initialize Model for Cron Jobs List
+		$this->CronJobsList = new CronJobsListModel();
 	}
 
 	/**
@@ -194,10 +197,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 	}
 
 	public function PluginController_CronJobs_Create(&$Sender) {
-		// Initialize Model for Cron Jobs List
-		$this->CronJobsList = new CronJobsListModel();
-		var_dump('Create');
-
 		/*
 		* If you build your views properly, this will be used as the <title> for your page, and for the header
 		* in the dashboard. Something like this works well: <h1><?php echo T($this->Data['Title']); ?></h1>
@@ -432,8 +431,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @Return True if registration was successful, False otherwise.
 	 */
 	public function RegisterCronJob(&$Object) {
-		var_dump('Register');
-		var_dump($this->CronJobsList);
 		return $this->CronJobsList->Add($Object);
 	}
 
@@ -442,8 +439,11 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 */
 	protected function _ProcessCronJobs() {
 		foreach ($this->CronJobsList->Get() as $Class => $Object) {
-			// This check uses a global Validation function, but a Validator is not
+			// This check uses a global Validation function. A Validator is not
 			// used here as it would be overkill.
+			// NOTE: this is actually a second check, just to be on the safe side.
+			// The presence of a public Cron() method is also verified when Objects
+			// register to the Cron List.
 			if(!ObjectImplementsCron($Object)) {
 				// TODO Use Logger to log the fact that an Object registered for Cron doesn't have a Cron method.
 				// If Object doesn't implement Cron(), just ignore it.

@@ -79,6 +79,13 @@ class CronJobsListModel extends Gdn_Model {
 			return false;
 		}
 
+		// Throw an exception if an Object which doesn't have a public Cron method
+		// attempts to register itself for Cron.
+		if(!ObjectImplementsCron($Object)) {
+			throw new InvalidArgumentException(T('Parameter $Object doesn\'t have a public Cron() method.'), CRON_ERR_CRON_METHOD_UNDEFINED);
+			return false;
+		}
+
 		// Object's class is used for reference.
 		$Class = get_class($Object);
 
