@@ -18,7 +18,7 @@ $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Cron Jobs',
 	'Version' => '1.0B',
-	'RequiredApplications' => array('Vanilla' => '2.0.10'),
+	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
 	'RequiredPlugins' => FALSE,
 	'HasLocale' => FALSE,
