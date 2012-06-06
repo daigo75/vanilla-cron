@@ -12,12 +12,6 @@
 	verbose="true"
 	strict="true">
 
-	<php>
-		<const name="APPLICATION" value="Vanilla" />
-		<const name="DS" value="/" />
-		<const name="PATH_ROOT" value="../../.." />
-	</php>
-
 	<testsuite name="CronJob Plugin">
 		<directory suffix="test.php">./</directory>
 	</testsuite>
