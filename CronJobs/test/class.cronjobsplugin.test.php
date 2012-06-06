@@ -83,7 +83,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 		if(!$PluginManager->CheckPlugin($PluginName)){
 			$Validation = new Gdn_Validation();
 			if(Gdn::PluginManager()->EnablePlugin($PluginName, $Validation)){
-				echo 'Plugin ' . $PluginName . ' has been enabled successfully.'
+				echo 'Plugin ' . $PluginName . ' has been enabled successfully.';
 			}
 			else {
 				var_dump($Validation->Results());
