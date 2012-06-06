@@ -39,6 +39,8 @@ define('APPLICATION_VERSION', getenv('VanillaVersion'));
 // 2. Include the bootstrap to configure the framework.
 //require_once(PATH_ROOT . '/bootstrap.php');
 
+
+
 class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	protected $CronJobsPlugin;
 
