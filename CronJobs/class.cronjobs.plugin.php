@@ -169,17 +169,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 	}
 
 	/**
-	 * Getter method for CronJobsList property.
-	 */
-	protected function GetCronJobsList() {
-		if(!isset($this->CronJobsList)) {
-			// Initialize Model for Cron Jobs List
-			$this->CronJobsList = new CronJobsListModel();
-		}
-		return $this->CronJobsList;
-	}
-
-	/**
 	* Plugin constructor
 	*
 	* This fires once per page load, during execution of bootstrap.php. It is a decent place to perform
@@ -188,6 +177,11 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*/
 	public function __construct() {
 		parent::__construct();
+
+		if(Gdn::PluginManager()->CheckPlugin('CronJobs')) {
+			// Initialize Model for Cron Jobs List
+			$this->CronJobsList = new CronJobsListModel();
+		}
 	}
 
 	/**
@@ -205,6 +199,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	}
 
 	public function PluginController_CronJobs_Create(&$Sender) {
+
 		/*
 		* If you build your views properly, this will be used as the <title> for your page, and for the header
 		* in the dashboard. Something like this works well: <h1><?php echo T($this->Data['Title']); ?></h1>
@@ -318,7 +313,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			//}
 		}
 
-		$Sender->SetData('CronJobsDataSet', $this->GetCronJobsList()->Get());
+		$Sender->SetData('CronJobsDataSet', $this->CronJobsList->Get());
 
 		$Sender->Render($this->GetView('cronjobs_jobs_view.php'));
 	}
@@ -439,14 +434,14 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @Return True if registration was successful, False otherwise.
 	 */
 	public function RegisterCronJob(&$Object) {
-		return $this->GetCronJobsList()->Add($Object);
+		return $this->CronJobsList->Add($Object);
 	}
 
 	/**
 	 * Processes the list of Cron Jobs, executing them one by one.
 	 */
 	protected function _ProcessCronJobs() {
-		foreach ($this->GetCronJobsList()->Get() as $Class => $Object) {
+		foreach ($this->CronJobsList->Get() as $Class => $Object) {
 			// This check uses a global Validation function. A Validator is not
 			// used here as it would be overkill.
 			// NOTE: this is actually a second check, just to be on the safe side.
