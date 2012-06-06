@@ -103,7 +103,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 		$this->EnablePlugin('CronJobs');
 
 		// Instantiate the plugin to be tested.
-		$this->CronJobsPlugin = new CronJobsPlugin();
+		$this->CronJobsPlugin = Gdn::PluginManager()->GetPluginInstance('CronJobs', Gdn_PluginManager::ACCESS_PLUGINNAME);
 	}
 
 	/**
