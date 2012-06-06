@@ -11,8 +11,8 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
 // 1. Define the constants we need to get going.
-//define('APPLICATION', 'Vanilla');
-//define('DS', '/');
+define('APPLICATION', 'Vanilla');
+define('DS', '/');
 // Application Version depends on the Build, which sets it as an environment variable.
 define('APPLICATION_VERSION', getenv('VanillaVersion'));
 
@@ -21,7 +21,7 @@ define('APPLICATION_VERSION', getenv('VanillaVersion'));
  * directory of Vanilla installation, which is three level up from current
  * location.
  */
-//define('PATH_ROOT', dirname(__FILE__) . '/../../..');
+define('PATH_ROOT', getenv('VanillaRootDir'));
 
 /**
  * IMPORTANT: Read if you're using a Symlink to point to plugin's directory!
@@ -37,7 +37,7 @@ define('APPLICATION_VERSION', getenv('VanillaVersion'));
 //define('PATH_ROOT', 'C:\XAMPP\htdocs\vanilla');
 
 // 2. Include the bootstrap to configure the framework.
-//require_once(PATH_ROOT . '/bootstrap.php');
+require_once(PATH_ROOT . '/bootstrap.php');
 
 
 

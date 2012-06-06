@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpunit backupGlobals="false"
 	backupStaticAttributes="false"
-	bootstrap="C:\XAMPP\htdocs\vanilla\bootstrap.php"
 	colors="false"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
@@ -13,9 +12,7 @@
 	strict="true">
 
 	<php>
-		<const name="APPLICATION" value="Vanilla" />
-		<const name="DS" value="/" />
-		<const name="PATH_ROOT" value="C:\XAMPP\htdocs\vanilla" />
+		<env name="VanillaRootDir" value="C:\XAMPP\htdocs\vanilla" />
 		<env name="VanillaVersion" value="2.0.18.4" />
 	</php>
 
