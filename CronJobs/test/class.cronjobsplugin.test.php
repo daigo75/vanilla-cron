@@ -16,7 +16,7 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 // Application Version depends on the Build, which sets it as an environment variable.
 define('APPLICATION_VERSION', $_ENV['VanillaVersion']);
 
-printf("Application Version: %s", APPLICATION_VERSION);
+var_dump(sprintf("Application Version: %s", APPLICATION_VERSION));
 
 /**
  * File Bootstrap.php, required to initialize Vanilla, is located in the root
