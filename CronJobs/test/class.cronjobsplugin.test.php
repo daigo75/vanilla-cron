@@ -11,15 +11,19 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
 // 1. Define the constants we need to get going.
-define('APPLICATION', 'Vanilla');
-define('DS', '/');
+//define('APPLICATION', 'Vanilla');
+//define('DS', '/');
+// Application Version depends on the Build, which sets it as an environment variable.
+define('APPLICATION_VERSION', $_ENV['VanillaVersion']);
+
+printf("Application Version: %s", APPLICATION_VERSION);
 
 /**
  * File Bootstrap.php, required to initialize Vanilla, is located in the root
  * directory of Vanilla installation, which is three level up from current
  * location.
  */
-define('PATH_ROOT', dirname(__FILE__) . '/../../..');
+//define('PATH_ROOT', dirname(__FILE__) . '/../../..');
 
 /**
  * IMPORTANT: Read if you're using a Symlink to point to plugin's directory!
@@ -35,7 +39,9 @@ define('PATH_ROOT', dirname(__FILE__) . '/../../..');
 //define('PATH_ROOT', 'C:\XAMPP\htdocs\vanilla');
 
 // 2. Include the bootstrap to configure the framework.
-require_once(PATH_ROOT . '/bootstrap.php');
+//require_once(PATH_ROOT . '/bootstrap.php');
+
+
 
 class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	protected $CronJobsPlugin;
@@ -84,6 +90,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 				printf('Plugin %s has been enabled successfully.', $PluginName);
 			}
 			else {
+				printf('Plugin %s could not be enabled. Stack trace below.', $PluginName);
 				var_dump($Validation->Results());
 			}
 		}
