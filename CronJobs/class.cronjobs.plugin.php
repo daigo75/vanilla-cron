@@ -196,6 +196,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	public function PluginController_CronJobs_Create(&$Sender) {
 		// Initialize Model for Cron Jobs List
 		$this->CronJobsList = new CronJobsListModel();
+		var_dump('Create');
 
 		/*
 		* If you build your views properly, this will be used as the <title> for your page, and for the header
@@ -309,7 +310,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 			//	$Sender->StatusMessage = T('Your changes have been saved.');
 			//}
 		}
-
 
 		$Sender->SetData('CronJobsDataSet', $this->CronJobsList->Get());
 
@@ -432,6 +432,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @Return True if registration was successful, False otherwise.
 	 */
 	public function RegisterCronJob(&$Object) {
+		var_dump('Register');
+		var_dump($this->CronJobsList);
 		return $this->CronJobsList->Add($Object);
 	}
 
