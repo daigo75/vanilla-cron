@@ -126,36 +126,36 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 	 * @expectedException InvalidArgumentException
 	 * @expectedExceptionCode CRON_ERR_NOT_AN_OBJECT
 	 */
-	public function testRegisterCronJob_NullObject() {
-		$InvalidObject = null;
-		$this->CronJobsPlugin->RegisterCronJob($InvalidObject);
-	}
-
-	/**
-	 * Attempt to register to the Cron Jobs list an object which doesn't
-	 * implement the required Cron() method.
-	 *
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionCode CRON_ERR_CRON_METHOD_UNDEFINED
-	 */
-	public function testRegisterCronJob_CronMethodUndefined() {
-		$InvalidObject = new stdClass();
-		$this->CronJobsPlugin->RegisterCronJob($InvalidObject);
-	}
-
-	/**
-	 * Attempt to register to the Cron Jobs list an object which implements
-	 * the required Cron() as expected. For the purpose of this test, the
-	 * internal CronJobsPlugin is used, as it already implements the required
-	 * method. It wouldn't make much sense in real life to register the same
-	 * object multiple times, however RegisterCronJob method uses object's
-	 * class as a key, preventing duplicate registration.
-	 *
-	 */
-	public function testRegisterCronJob_ExpectedObject() {
-		$this->assertTrue($this->CronJobsPlugin->RegisterCronJob($this->CronJobsPlugin),
-											T('Failed to register plugin for Cron.'));
-	}
+	//public function testRegisterCronJob_NullObject() {
+	//	$InvalidObject = null;
+	//	$this->CronJobsPlugin->RegisterCronJob($InvalidObject);
+	//}
+	//
+	///**
+	// * Attempt to register to the Cron Jobs list an object which doesn't
+	// * implement the required Cron() method.
+	// *
+	// * @expectedException InvalidArgumentException
+	// * @expectedExceptionCode CRON_ERR_CRON_METHOD_UNDEFINED
+	// */
+	//public function testRegisterCronJob_CronMethodUndefined() {
+	//	$InvalidObject = new stdClass();
+	//	$this->CronJobsPlugin->RegisterCronJob($InvalidObject);
+	//}
+	//
+	///**
+	// * Attempt to register to the Cron Jobs list an object which implements
+	// * the required Cron() as expected. For the purpose of this test, the
+	// * internal CronJobsPlugin is used, as it already implements the required
+	// * method. It wouldn't make much sense in real life to register the same
+	// * object multiple times, however RegisterCronJob method uses object's
+	// * class as a key, preventing duplicate registration.
+	// *
+	// */
+	//public function testRegisterCronJob_ExpectedObject() {
+	//	$this->assertTrue($this->CronJobsPlugin->RegisterCronJob($this->CronJobsPlugin),
+	//										T('Failed to register plugin for Cron.'));
+	//}
 
 	/**
 	 * Tests the execution of registered Cron Jobs.
