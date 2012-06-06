@@ -1,4 +1,4 @@
 @echo off
 echo Running CronJobs Tests...
-call phpunit class.cronjobsplugin.test.php
+call phpunit -c phpunit_local.xml
 pause
