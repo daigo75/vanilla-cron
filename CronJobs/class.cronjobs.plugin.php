@@ -10,7 +10,11 @@ You should have received a copy of the GNU General Public License along with Cro
 Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
-require(CRON_PLUGIN_LIB_PATH . '/cronjobs.defines.php');
+// File cronjobs.defines.php must be included by manually specifying the whole
+// path. It will then define some shortcuts for commonly used paths, such as
+// CRON_PLUGIN_LIB_PATH, used just below.
+require(PATH_PLUGINS . '/CronJobs/lib/cronjobs.defines.php');
+// CRON_PLUGIN_LIB_PATH is defined in cronjobs.defines.php.
 require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 
 // Define the plugin:

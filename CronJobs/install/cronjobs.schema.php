@@ -10,9 +10,9 @@ You should have received a copy of the GNU General Public License along with Cro
 Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
-require(PATH_PLUGINS.'/Crpn/class.karmabankmodel.php');
+require('plugin.schema.php');
 
-class Schema {
+class CronJobsSchema extends PluginSchema {
 	protected $Database;
 	protected $Construct;
 
@@ -91,11 +91,6 @@ class Schema {
 			->Set(FALSE, FALSE);
 	}
 
-	public function __construct() {
-		$this->Database = &Gdn::Database();
-		$this->Construct = $this->Database->Structure();
-	}
-
 	/**
 	 * Create all the Database Objects in the appropriate order.
 	 */
@@ -108,23 +103,7 @@ class Schema {
 	 * Delete the Database Objects.
 	 */
 	protected function DropObjects() {
-	}
-
-	/**
-	 * This method will be called during the Setup phase by the plugin to create
-	 * the necessary Database Objects.
-	 */
-	public static function Install() {
-		$Schema = new Schema();
-		$Schema->CreateObjects();
-	}
-
-	/**
-	 * This method will be called during the Disable/Uninstall phase by the plugin
-	 * to remove created objects.
-	 */
-	public static function Uninstall() {
-		$Schema = new Schema();
-		$Schema->DropObjects();
+		$this->DropTable('CronJobsHistory');
+		$this->DropTable('CronJobsList');
 	}
 }
