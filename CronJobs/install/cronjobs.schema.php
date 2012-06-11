@@ -13,46 +13,10 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 require('plugin.schema.php');
 
 class CronJobsSchema extends PluginSchema {
-	protected $Database;
-	protected $Construct;
-
-	/**
-	 * Drops and recreates an Index on the specified Table. If Index doesn't exist,
-	 * it simply creates it.
-	 *
-	 * @param TableName The name of the table where the index will be (re)created.
-	 * Name must not contain database prefix, it will be added automatically.
-	 * @param IndexName The name of the index to (re)create.
-	 * @param Fields Array containing the names of the fields to be added to the
-	 * Index. Clauses such as ASC or DESC can be specified for each entry (e.g.
-	 * array('MyField ASC', 'MyOtherField DESC')).
-	 *
-	 * @return void
-	 */
-	protected function CreateIndex($TableName, $IndexName, $Fields) {
-		$Px = $this->Database->DatabasePrefix;
-
-		// Attempt to drop index. If Index doesn't exist, an exception will be
-		// raised, but it can just be hidden.
-		$Sql = "ALTER TABLE `{$Px}$TableName`\n" .
-					"DROP INDEX `$IndexName`;\n";
-		try {
-			$this->Construct->Query($Sql);
-		}
-		catch(Exception $e) {
-			// Nothing to be done.
-		}
-
-		// Recreate the Index with the new fields
-		$Sql = "ALTER TABLE `{$Px}$TableName`\n" .
-					"ADD INDEX `$IndexName` (" . implode(', ', $Fields) . ");\n";
-		$this->Construct->Query($Sql);
-	}
-
 	/**
 	 * Create the table which will store the History of Cron Executions.
 	 */
-	public function create_cronjobshistory_table() {
+	protected function create_cronjobshistory_table() {
 		$Px = $this->Database->DatabasePrefix;
 		Gdn::Structure()
 			->Table('CronJobsHistory')
@@ -77,7 +41,7 @@ class CronJobsSchema extends PluginSchema {
 	/**
 	 * Create the table which will store a list of configured Cron Jobs.
 	 */
-	public function create_cronjobslist_table() {
+	protected function create_cronjobslist_table() {
 		$Px = $this->Database->DatabasePrefix;
 		Gdn::Structure()
 			->Table('CronJobsList')
