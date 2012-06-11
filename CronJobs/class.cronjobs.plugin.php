@@ -526,6 +526,17 @@ class CronJobsPlugin extends Gdn_Plugin {
 	* perform cleanup tasks such as deletion of unsued files and folders.
 	*/
 	public function CleanUp() {
+		// Remove Plugin's configuration parameters
+		RemoveFromConfig('Plugin.CronJobs.AllowedIPAddresses');
+		RemoveFromConfig('Plugin.CronJobs.MaxRunsPerMinute');
+		RemoveFromConfig('Plugin.CronJobs.MaxRunsPerHour');
+		RemoveFromConfig('Plugin.CronJobs.MaxRunsPerDay');
+		RemoveFromConfig('Plugin.CronJobs.LastRun');
+		RemoveFromConfig('Plugin.CronJobs.MinuteRuns');
+		RemoveFromConfig('Plugin.CronJobs.HourRuns');
+		RemoveFromConfig('Plugin.CronJobs.DayRuns');
+		RemoveFromConfig('Plugin.CronJobs.CronKey');
+
 		// Drop Database Objects created by the Plugin
 		require('install/schema.php');
 		CronJobsSchema::Uninstall();
