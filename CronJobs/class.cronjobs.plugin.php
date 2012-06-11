@@ -511,8 +511,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 		SaveToConfig('Plugin.CronJobs.CronKey', CRON_DEFAULT_CRONKEY);
 
 		// Create Database Objects needed by the Plugin
-		require('install/schema.php');
-		Schema::Install();
+		require('install/cronjobs.schema.php');
+		CronJobsSchema::Install();
 	}
 
 	/**
@@ -524,7 +524,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	public function CleanUp() {
 		// Drop Database Objects created by the Plugin
 		require('install/schema.php');
-		Schema::Uninstall();
+		CronJobsSchema::Uninstall();
 	}
 
 	/**
