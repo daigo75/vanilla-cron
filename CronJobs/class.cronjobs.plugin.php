@@ -205,28 +205,13 @@ class CronJobsPlugin extends Gdn_Plugin {
 		$Sender->Title('Cron Jobs');
 		$Sender->AddSideMenu('plugin/cronjobs');
 
-		// If your sub-pages use forms, this is a good place to get it ready
+		// Prepare form for sub-pages
 		$Sender->Form = new Gdn_Form();
 
+		// Fire the Event that allows plugins to Register their Cron Jobs
 		$this->FireEvent('CronJobRegister');
 
-		/*
-		* This method does a lot of work. It allows a single method (PluginController::CronJobs() in this case)
-		* to "forward" calls to internal methods on this plugin based on the URL's first parameter following the
-		* real method name, in effect mimicing the functionality of as a real top level controller.
-		*
-		* For example, if we accessed the URL: http://www.yourforum.com/plugin/cronjobs/test, Dispatch() here would
-		* look for a method called CronJobsPlugin::Controller_Test(), and invoke it. Similarly, we we accessed the
-		* URL: http://www.yourforum.com/plugin/CronJobs/foobar, Dispatch() would find and call
-		* CronJobsPlugin::Controller_Foobar().
-		*
-		* The main benefit of this style of extending functionality is that all of a plugin's external API is
-		* consolidated under one namespace, reducing the chance for random method name conflicts with other
-		* plugins.
-		*
-		* Note: When the URL is accessed without parameters, Controller_Index() is called. This is a good place
-		* for a dashboard settings screen.
-		*/
+		// Forward the call to the appropriate method.
 		$this->Dispatch(&$Sender, $Sender->RequestArgs);
 	}
 
