@@ -10,6 +10,8 @@ You should have received a copy of the GNU General Public License along with Cro
 Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
+require(PATH_PLUGINS.'/Crpn/class.karmabankmodel.php');
+
 class Schema {
 	protected $Database;
 	protected $Construct;

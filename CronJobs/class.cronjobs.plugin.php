@@ -10,8 +10,8 @@ You should have received a copy of the GNU General Public License along with Cro
 Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 */
 
-require('includes/cronjobs.defines.php');
-require('includes/cronjobs.validation.php');
+require(CRON_PLUGIN_LIB_PATH . '/cronjobs.defines.php');
+require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 
 // Define the plugin:
 $PluginInfo['CronJobs'] = array(

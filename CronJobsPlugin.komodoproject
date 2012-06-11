@@ -3,6 +3,4 @@
 <project id="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1" kpf_version="5" name="CronJobsPlugin.komodoproject">
 <livefolder id="57c2164c-3d95-4818-a25f-26eaec4999d3" idref="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1" name="CronJobs" url="CronJobs">
 </livefolder>
-<file id="bb21d5a4-ab05-4a6c-b454-d8a06b3aec8b" idref="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1" name="class.cronjobs.plugin.php" url="CronJobs/class.cronjobs.plugin.php">
-</file>
 </project>

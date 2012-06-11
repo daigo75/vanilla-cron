@@ -29,7 +29,7 @@ define('CRON_DEFAULT_CRONKEY', '');
 
 // Paths
 define('CRON_PLUGIN_PATH', PATH_PLUGINS . '/CronJobs');
-define('CRON_PLUGIN_COMMON_PATH', CRON_PLUGIN_PATH . '/CronJobs');
+define('CRON_PLUGIN_LIB_PATH', CRON_PLUGIN_PATH . '/lib');
 
 // URLs
 define('CRON_PLUGIN_BASE_URL', 'plugin/cronjobs');
