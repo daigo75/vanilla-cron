@@ -233,16 +233,17 @@ class CronJobsPlugin extends Gdn_Plugin {
 		$this->_SetConfigModelValidationRules($Validation);
 
 		$ConfigurationModel = new Gdn_ConfigurationModel($Validation);
-		$ConfigurationModel->SetField(array('Plugin.CronJobs.AllowedIPAddresses' => CRON_DEFAULT_ALLOWEDIPADDRESSES,
-																				'Plugin.CronJobs.MaxRunsPerMinute' => CRON_DEFAULT_MAXRUNSPERMINUTE,
-																				'Plugin.CronJobs.MaxRunsPerHour' => CRON_DEFAULT_MAXRUNSPERHOUR,
-																				'Plugin.CronJobs.MaxRunsPerDay' => CRON_DEFAULT_MAXRUNSPERDAY,
-																				'Plugin.CronJobs.LastRun' => CRON_DEFAULT_LASTRUN,
-																				'Plugin.CronJobs.MinuteRuns' => CRON_DEFAULT_MINUTERUNS,
-																				'Plugin.CronJobs.HourRuns' => CRON_DEFAULT_HOURRUNS,
-																				'Plugin.CronJobs.DayRuns' => CRON_DEFAULT_DAYRUNS,
-																				'Plugin.CronJobs.CronKey' => CRON_DEFAULT_CRONKEY,
-																				));
+		$ConfigurationModel->SetField(array(
+			'Plugin.CronJobs.AllowedIPAddresses' => CRON_DEFAULT_ALLOWEDIPADDRESSES,
+			'Plugin.CronJobs.MaxRunsPerMinute' => CRON_DEFAULT_MAXRUNSPERMINUTE,
+			'Plugin.CronJobs.MaxRunsPerHour' => CRON_DEFAULT_MAXRUNSPERHOUR,
+			'Plugin.CronJobs.MaxRunsPerDay' => CRON_DEFAULT_MAXRUNSPERDAY,
+			'Plugin.CronJobs.LastRun' => CRON_DEFAULT_LASTRUN,
+			'Plugin.CronJobs.MinuteRuns' => CRON_DEFAULT_MINUTERUNS,
+			'Plugin.CronJobs.HourRuns' => CRON_DEFAULT_HOURRUNS,
+			'Plugin.CronJobs.DayRuns' => CRON_DEFAULT_DAYRUNS,
+			'Plugin.CronJobs.CronKey' => CRON_DEFAULT_CRONKEY,
+		));
 
 		// Set the model on the form.
 		$Sender->Form->SetModel($ConfigurationModel);
