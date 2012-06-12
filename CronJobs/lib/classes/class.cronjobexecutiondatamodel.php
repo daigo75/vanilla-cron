@@ -13,7 +13,7 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 /**
  * Cron Jobs Execution Data Model
  *
- * @package CronJobs
+ * @package CronPlugin
  */
 
 /**

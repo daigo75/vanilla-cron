@@ -13,15 +13,8 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 /**
  * Cron Jobs List Model
  *
- * @package CronJobs
+ * @package CronPlugin
  */
-
-/**
- * Cron Jobs data management.
- *
- * @package CronJobs
- */
-
 
 /**
  * Allows to read/write Cron Jobs List table, which contains a list of the Cron

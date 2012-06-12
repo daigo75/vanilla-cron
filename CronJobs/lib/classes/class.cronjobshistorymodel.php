@@ -13,15 +13,8 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 /**
  * Cron Jobs History Model
  *
- * @package CronJobs
+ * @package CronPlugin
  */
-
-/**
- * Cron Jobs data management.
- *
- * @package CronJobs
- */
-
 
 /**
  * Allows to read/write Cron Jobs History table.
