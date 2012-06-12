@@ -17,7 +17,6 @@ class CronJobsSchema extends PluginSchema {
 	 * Create the table which will store the History of Cron Executions.
 	 */
 	protected function create_cronjobshistory_table() {
-		$Px = $this->Database->DatabasePrefix;
 		Gdn::Structure()
 			->Table('CronJobsHistory')
 			->PrimaryKey('CronJobsHistoryID')
@@ -42,7 +41,6 @@ class CronJobsSchema extends PluginSchema {
 	 * Create the table which will store a list of configured Cron Jobs.
 	 */
 	protected function create_cronjobslist_table() {
-		$Px = $this->Database->DatabasePrefix;
 		Gdn::Structure()
 			->Table('CronJobsList')
 			->PrimaryKey('CronJobsListID')
