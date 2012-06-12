@@ -17,19 +17,12 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
  */
 
 /**
- * Cron Jobs Execution Data management.
- *
- * @package CronJobs
- */
-
-
-/**
  * This class acts as a wrapper used to pass the information about each Cron Job
  * Execution to Event Handlers and to Cron Jobs History Model for saving it in
  * the Database. This allows to achieve a higher level of decoupling from
  * Vanilla's Core.
  */
-class CronJobExecutionData extends Gdn_Model {
+class CronJobExecutionDataModel extends Gdn_Model {
 	protected $ClassName;
 	protected $StartedAt;
 	protected $FinishedAt;

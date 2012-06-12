@@ -129,15 +129,15 @@ class CronJobsHistoryModel extends Gdn_Model {
 	 * Allows to insert the results of a Cron Job Execution into the database.
 	 *
 	 * This function overrides the standard Insert to accept an instance of
-	 * CronJobExecutionData instead of an array of values. This has been done to
+	 * CronJobExecutionDataModel instead of an array of values. This has been done to
 	 * decouple this class from Vanilla's way of passing data.
 	 *
-	 * @param CronJobExecutionData CronJobExecutionData An instance of
-	 * CronJobExecutionData, containing the details of a Cron Job Execution.
+	 * @param CronJobExecutionDataModel CronJobExecutionData An instance of
+	 * CronJobExecutionDataModel, containing the details of a Cron Job Execution.
 	 */
-	public function Insert(CronJobExecutionData $CronJobExecutionData) {
+	public function Insert(CronJobExecutionDataModel $CronJobExecutionData) {
 		// Data is converted into an array, as this is the format expected by parent
 		// class' Insert() method.
-		return parent::Insert($CronJobExecutionData->GetData());
+		return parent::Insert($CronJobExecutionDataModel->GetData());
 	}
 }

@@ -441,7 +441,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			}
 
 			// Method _RunCronJob returns the details of the Job execution as an
-			// instance of CronJobExecutionData. This information could be used for
+			// instance of CronJobExecutionDataModel. This information could be used for
 			// debugging and other purposes.
 			$this->_RunCronJob($Object);
 		}
@@ -455,7 +455,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @return TRUE if Object's Cron ran successfully, FALSE otherwise.
 	 */
 	protected function _RunCronJob(&$Object) {
-		$CronExecData = new CronJobExecutionData(get_class($Object), date('Y-m-d H:i:s'));
+		$CronExecData = new CronJobExecutionDataModel(get_class($Object), date('Y-m-d H:i:s'));
 		$this->FireEvent('BeforeCronJobExecute');
 
 		try {
