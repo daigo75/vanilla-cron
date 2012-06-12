@@ -77,3 +77,13 @@ if(!function_exists('ObjectImplementsCron')){
 		return method_exists($Object, 'Cron');
 	}
 }
+
+if (!function_exists('ValidatePositiveInteger')) {
+		/**
+		 * Check that a value is a positive Integer.
+		 */
+	  function ValidatePositiveInteger($Value, $Field) {
+			return ValidateInteger($Value, $Field) &&
+						 ($Value > 0);
+		}
+}
