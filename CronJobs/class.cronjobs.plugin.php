@@ -264,7 +264,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			$Sender->Form->SetFormValue('ResetCounters', 0);
 
 			if ($Saved) {
-				$Sender->StatusMessage = T('Your changes have been saved.');
+				$Sender->InformMessage(T('Your changes have been saved.'));
 			}
 		}
 
