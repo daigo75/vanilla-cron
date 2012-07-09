@@ -22,7 +22,6 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 																			'class' => 'NoResultsFound',)
 																);
 ?>
-<h1><?php echo T($this->Data['Title']); ?></h1>
 <div class="CronJobsPlugin">
 	<div class="PluginHeader">
 		<?php include('cronjobs_admin_header.php'); ?>
