@@ -227,7 +227,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		$Sender->Permission('Vanilla.Settings.Manage');
 
 		$Sender->SetData('PluginDescription', $this->GetPluginKey('Description'));
-		$Sender->SetData('Path', CRON_SETTINGS_URL);
+		$Sender->SetData('CurrentPath', CRON_SETTINGS_URL);
 
 		$Validation = new Gdn_Validation();
 		$this->_SetConfigModelValidationRules($Validation);
@@ -279,7 +279,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	public function Controller_Jobs(&$Sender) {
 		// Prevent Users without proper permissions from accessing this page.
 		$Sender->Permission('Plugins.CronJobs.Manage');
-		$Sender->SetData('Path', CRON_REGISTERED_JOBS_URL);
+		$Sender->SetData('CurrentPath', CRON_REGISTERED_JOBS_URL);
 
 		$Validation = new Gdn_Validation();
 		//$this->_SetConfigModelValidationRules($Validation);
@@ -316,7 +316,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// have not been exceeded.
 		if($this->_IsRequestAuthorized($Sender) &&
 			 $this->_CheckExecutionLimits($Sender)) {
-			$Sender->SetData('Path', CRON_EXEC_URL);
+			$Sender->SetData('CurrentPath', CRON_EXEC_URL);
 
 			// Save time of execution, which will be used for throttling.
 			SaveToConfig('Plugin.CronJobs.LastRun', mktime());
@@ -359,7 +359,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// Prevent Users without proper permissions from accessing this page.
 		$Sender->Permission('Plugins.CronJobs.Manage');
 
-		$Sender->SetData('Path', CRON_HISTORY_URL);
+		$Sender->SetData('CurrentPath', CRON_HISTORY_URL);
 
 		$Sender->Form->Method = 'get';
 		// If seeing the form for the first time...

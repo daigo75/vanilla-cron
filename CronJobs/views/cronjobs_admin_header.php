@@ -16,7 +16,7 @@ Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
 	// This will be used to highlight the "Active Tab", following the logic
 	// "assign class Active to the Tab associated to current path".
 	$TabsClasses = array();
-	$TabsClasses[$this->Data['Path']] = 'Active';
+	$TabsClasses[$this->Data['CurrentPath']] = 'Active';
 
 	/**
 	 * Renders the HTML Markup that will appear on the page as a Tab.
