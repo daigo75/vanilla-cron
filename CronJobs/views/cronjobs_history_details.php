@@ -1,40 +1,50 @@
 <?php if (!defined('APPLICATION')) exit();
-/*
-Copyright 2012 Diego Zanella IT Services
-This file is part of Cron Plugin for Vanilla Forums.
-
-Cron Plugin is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
-Cron Plugin is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with Cron Plugin.  If not, see <http://www.gnu.org/licenses/>.
-
-Contact Diego Zanella at diego [at] pathtoenlightenment [dot] net
+/**
+ * Copyright 2012 Diego Zanella
+ * This file is part of CronJobs Plugin for Vanilla Forums.
+ *
+ * Plugin is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or (at your
+ * option) any later version.
+ * Plugin is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details.
+ * You should have received a copy of the GNU General Public License along with
+ * CronJobs Plugin. If not, see http://opensource.org/licenses/GPL-2.0.
+ *
+ * @package CronJobs Plugin
+ * @author Diego Zanella <diego@pathtoenlightenment.net>
+ * @copyright Copyright (c) 2011 Diego Zanella (http://dev.pathtoenlightenment.net)
+ * @license http://opensource.org/licenses/GPL-2.0 GPL 2.0
 */
 
-	/**
-	 * This template is a snippet that has to be loaded by parent views, such as
-	 * cronjobhistory_view.php. It expects variable $CronJobsHistoryDataSet
-	 * to be already populated, and, if it is, it outputs a table containing the
-	 * Cron Jobs History within a date range.
-	 *
-	 * This snippet has been extracted to a separate file to allow reusing it in
-	 * different places (e.g. in Views which allow Users to choose different
-	 * parameters, or in a Widget on the front end).
-	 */
+/**
+ * This template is a snippet that has to be loaded by parent views, such as
+ * cronjobhistory_view.php. It expects variable $CronJobsHistoryDataSet
+ * to be already populated, and, if it is, it outputs a table containing the
+ * Cron Jobs History within a date range.
+ *
+ * This snippet has been extracted to a separate file to allow reusing it in
+ * different places (e.g. in Views which allow Users to choose different
+ * parameters, or in a Widget on the front end).
+ */
 
-	// No point in proceeding if there's not even a DataSet to begin with.
-	if(!isset($CronJobsHistoryDataSet)) { return; }
+// No point in proceeding if there's not even a DataSet to begin with.
+if(!isset($CronJobsHistoryDataSet)) { return; }
 
-	// Indicates how many columns there are in the table that shows data from the
-	// Cron Jobs History. It's mainly used to set the "colspan" attributes of
-	// single-valued table rows, such as Title, or the "No Results Found" message.
-	define('HISTORY_TABLE_COLUMNS', 5);
+// Indicates how many columns there are in the table that shows data from the
+// Cron Jobs History. It's mainly used to set the "colspan" attributes of
+// single-valued table rows, such as Title, or the "No Results Found" message.
+define('HISTORY_TABLE_COLUMNS', 5);
 
-	// The following HTML will be displayed when the DataSet is empty.
-	$OutputForEmptyDataSet = Wrap(T('No results found. Please try using different parameters.'),
-																'td',
-																array('colspan' => HISTORY_TABLE_COLUMNS,
-																			'class' => 'NoResultsFound',)
-																);
+// The following HTML will be displayed when the DataSet is empty.
+$OutputForEmptyDataSet = Wrap(T('No results found. Please try using different parameters.'),
+															'td',
+															array('colspan' => HISTORY_TABLE_COLUMNS,
+																		'class' => 'NoResultsFound',)
+															);
 ?>
 	<table id="CronJobsHistoryDetails" class="display">
 		<thead>
