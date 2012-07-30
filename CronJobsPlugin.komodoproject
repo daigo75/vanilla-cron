@@ -3,4 +3,13 @@
 <project id="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1" kpf_version="5" name="CronJobsPlugin.komodoproject">
 <livefolder id="57c2164c-3d95-4818-a25f-26eaec4999d3" idref="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1" name="CronJobs" url="CronJobs">
 </livefolder>
+<preference-set idref="e57c0fec-56dc-4d9c-99f4-6e4d62520ec1">
+  <string relative="path" id="import_dirname"></string>
+  <string id="import_exclude_matches">*.*~;*.bak;*.tmp;CVS;.#*;*.pyo;*.pyc;.svn;_svn;.git;.hg;.bzr;*%25*;tmp*.html;.DS_Store;*.swp;*.kpf;*.komodoproject;.komodotools;__pycache__</string>
+  <string id="import_include_matches"></string>
+  <string id="phpCommentStyle">//,#</string>
+  <string id="phpConfigFile">C:\XAMPP\php\php.ini</string>
+  <string id="phpDefaultInterpreter"></string>
+  <string id="phpExtraPaths">C:\XAMPP\htdocs\vanilla;C:\Users\d.zanella\Documents\Projects\Web\procedo.ie;C:\XAMPP\php\PEAR\PHPUnit</string>
+</preference-set>
 </project>
