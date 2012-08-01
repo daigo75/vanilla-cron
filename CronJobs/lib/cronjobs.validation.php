@@ -22,7 +22,7 @@
 
 
 /**
- * Validation functions for Cron Plugin Plugin.
+ * Validation functions for Cron Plugin.
  *
  * @package CronPlugin
  */

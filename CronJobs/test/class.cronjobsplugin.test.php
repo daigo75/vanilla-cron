@@ -93,6 +93,7 @@ class CronJobsPluginTests extends PHPUnit_Framework_TestCase {
 
 	protected function EnablePlugin($PluginName) {
 		$PluginManager = Gdn::PluginManager();
+		// Check if Plugin to be tested is enabled. If not, try to enable it.
 		if(!$PluginManager->CheckPlugin($PluginName)) {
 			$Validation = new Gdn_Validation();
 			if(Gdn::PluginManager()->EnablePlugin($PluginName, $Validation)) {
