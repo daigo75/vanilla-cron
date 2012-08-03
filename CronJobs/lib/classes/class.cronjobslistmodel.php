@@ -19,7 +19,6 @@
  * @copyright Copyright (c) 2011 Diego Zanella (http://dev.pathtoenlightenment.net)
  * @license http://opensource.org/licenses/GPL-2.0 GPL 2.0
 */
-/
 
 /**
  * Cron Jobs List Model
