@@ -284,7 +284,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 
 
 	/**
-	 * Displaysa page showing all Cron Jobs registered by plugins.
+	 * Displays a page showing all Cron Jobs registered by plugins.
 	 */
 	public function Controller_Jobs(&$Sender) {
 		// Prevent Users without proper permissions from accessing this page.
@@ -303,7 +303,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			$Sender->Form->SetData($ConfigurationModel->Data);
 		}
 		else {
-			var_dump($Sender->Form->FormValues());
+			//var_dump($Sender->Form->FormValues());
 			//$Saved = $Sender->Form->Save();
 			//
 			//if ($Saved) {
