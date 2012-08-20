@@ -30,22 +30,34 @@
 			echo $this->Form->Open();
 			echo $this->Form->Errors();
 		?>
-		<div class="FilterMenu">
-			<ul>
-				 <li><?php
-						echo $this->Form->Label(T('Start Date'), 'DateFrom');
-						echo $this->Form->Date('DateFrom');
-				 ?></li>
-				 <li><?php
-						echo $this->Form->Label(T('End Date'), 'DateTo');
-						echo $this->Form->Date('DateTo');
-				 ?></li>
-				 <li><?php
-						echo $this->Form->Label(T('Results per Page'), 'ResultsPerPage');
-						echo $this->Form->Textbox('ResultsPerPage');
-				 ?></li>
-			</ul>
-		</div>
+		<fieldset>
+			<legend>
+				<h3><?php echo T('Date Range'); ?></h3>
+				<p>
+					<?php
+					echo T('In this section you can view a History of the Cron Jobs executions, with the' .
+								 'result of each job.');
+					?>
+				</p>
+			</legend>
+			<div class="FilterMenu">
+				<ul>
+					 <li><?php
+							echo $this->Form->Label(T('Start Date'), 'DateFrom');
+							echo $this->Form->Date('DateFrom');
+					 ?></li>
+					 <li><?php
+							echo $this->Form->Label(T('End Date'), 'DateTo');
+							echo $this->Form->Date('DateTo');
+					 ?></li>
+					 <li><?php
+							//echo $this->Form->Label(T('Results per Page'), 'ResultsPerPage');
+							//echo $this->Form->Textbox('ResultsPerPage');
+							$this->Form->Hidden('ResultsPerPage', array('value' => CRON_DEFAULT_HISTORYJOBSPERPAGE,));
+					 ?></li>
+				</ul>
+			</div>
+		</fieldset>
 		<?php
 			 echo $this->Form->Close('Refresh');
 		?>

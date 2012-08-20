@@ -142,6 +142,6 @@ class CronJobsHistoryModel extends Gdn_Model {
 	public function Insert(CronJobExecutionDataModel $CronJobExecutionData) {
 		// Data is converted into an array, as this is the format expected by parent
 		// class' Insert() method.
-		return parent::Insert($CronJobExecutionDataModel->GetData());
+		return parent::Insert($CronJobExecutionData->GetData());
 	}
 }

@@ -36,3 +36,7 @@
 .CronJobsPlugin .Results table {
 	width: 62em;
 }
+
+.CronJobsPlugin fieldset {
+	width: 100%;
+}

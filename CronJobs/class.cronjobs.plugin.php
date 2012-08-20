@@ -49,6 +49,24 @@ class CronJobsPlugin extends Gdn_Plugin {
 	/// @see CronJobListModel
 	protected $CronJobsList;
 
+	/// Contains an instance of CronJobsHistoryModel
+	/// @see $CronJobsHistoryModel
+	protected $CronJobsHistoryModel;
+
+	/**
+	 * Returns the instance of CronJobsHistoryModel used by the plugin. If an
+	 * instance is not set, the function creates a new one and returns it.
+	 *
+	 * @return An instance of CronJobsHistoryModel.
+	 */
+	protected function GetCronJobsHistoryModel() {
+		if(empty($this->CronJobsHistoryModel)) {
+			$this->CronJobsHistoryModel = new CronJobsHistoryModel();
+		}
+
+		return $this->CronJobsHistoryModel;
+	}
+
 	/**
 	 * Set Validation Rules related to Configuration Model.
 	 *
@@ -384,7 +402,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 		else {
 			// Else, validate submitted data.
 			$Validation = new Gdn_Validation();
-			$CronJobsHistoryModel = new CronJobsHistoryModel();
 
 			$this->_SetCronJobsHistoryValidationRules($Validation);
 
@@ -397,7 +414,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 				$DateFrom = $Sender->Form->GetFormValue('DateFrom');
 				$DateTo = $Sender->Form->GetFormValue('DateTo');
 
-				$CronJobsHistoryDataSet = $CronJobsHistoryModel->Get($DateFrom, $DateTo)->Result();
+				$CronJobsHistoryDataSet = $this->GetCronJobsHistoryModel()->Get($DateFrom, $DateTo)->Result();
 
 				$Sender->SetData('CronJobsHistoryDataSet', $CronJobsHistoryDataSet);
 			}
@@ -501,9 +518,9 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * execution results and for debugging purposes.
 	 */
 	public function CronJobsPlugin_AfterCronJobExecute_Handler(&$Sender){
-		$CronJobsHistoryModel = new CronJobsHistoryModel();
-
-		$InsertResult = $CronJobsHistoryModel->Insert(&$Sender->EventArguments['CronExecData']);
+		$CronExecData = $Sender->EventArguments['CronExecData'];
+		var_dump($CronExecData);
+		$InsertResult = $this->GetCronJobsHistoryModel()->Insert($CronExecData);
 	}
 
 	/**
