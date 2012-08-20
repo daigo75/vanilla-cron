@@ -30,9 +30,8 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 // Define the plugin:
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
-	'Description' => 'Allows other plugins to register actions that will be executed ' .
-									 'on a scheduled basis.',
-	'Version' => '12.08.20 Beta',
+	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
+	'Version' => '12.08.20 beta',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
 	'RequiredPlugins' => FALSE,
