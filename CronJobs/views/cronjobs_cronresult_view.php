@@ -42,7 +42,8 @@ $ExecutionResultMessages = array(CRON_EXEC_SUCCESS => T('Cron ran successfully.'
 			</div>
 			<?php
 				// TODO Show more information about the Cron Run.
-				echo $ExecutionResultMessages[$this->Data['CronExecResult']];
+				echo Wrap($ExecutionResultMessages[$this->Data['CronExecResult']], 'p');
+				echo Wrap(sprintf(T('Please go to %s for more details'), Anchor(T('Cron Jobs History Page'), CRON_HISTORY_URL)), 'p');
 			?>
 		</div>
 	</div>

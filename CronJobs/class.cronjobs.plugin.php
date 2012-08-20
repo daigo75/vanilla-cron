@@ -31,7 +31,7 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Cron Jobs',
-	'Version' => '1.0B',
+	'Version' => '1.3 Beta',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
 	'RequiredPlugins' => FALSE,
@@ -195,9 +195,10 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @return void.
 	 */
 	protected function _ResetCronExecutionCounters(&$Form) {
-		$Form->SetFormValue('Plugin.CronJobs.DayRuns', 0);
-		$Form->SetFormValue('Plugin.CronJobs.HourRuns', 0);
-		$Form->SetFormValue('Plugin.CronJobs.MinuteRuns', 0);
+			// TODO Move Cron Execution Counters to a database table
+		SaveToConfig('Plugin.CronJobs.DayRuns', 0);
+		SaveToConfig('Plugin.CronJobs.HourRuns', 0);
+		SaveToConfig('Plugin.CronJobs.MinuteRuns', 0);
 	}
 
 	/**
@@ -268,6 +269,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 			'Plugin.CronJobs.MaxRunsPerDay' => CRON_DEFAULT_MAXRUNSPERDAY,
 			'Plugin.CronJobs.LastRun' => CRON_DEFAULT_LASTRUN,
 			'Plugin.CronJobs.MinuteRuns' => CRON_DEFAULT_MINUTERUNS,
+
+			// TODO Move Cron Execution Counters to a database table
 			'Plugin.CronJobs.HourRuns' => CRON_DEFAULT_HOURRUNS,
 			'Plugin.CronJobs.DayRuns' => CRON_DEFAULT_DAYRUNS,
 			'Plugin.CronJobs.CronKey' => CRON_DEFAULT_CRONKEY,
@@ -282,14 +285,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			$Sender->Form->SetData($ConfigurationModel->Data);
 		}
 		else {
-			// Check if User requested to reset all Counters.
-			if($Sender->Form->GetFormValue('ResetCounters') === '1') {
-				$this->_ResetCronExecutionCounters($Sender->Form);
-			}
-
 			$Saved = $Sender->Form->Save();
-			// Clear the "Reset Counters" checkbox.
-			$Sender->Form->SetFormValue('ResetCounters', 0);
 
 			if ($Saved) {
 				$Sender->InformMessage(T('Your changes have been saved.'));
@@ -299,7 +295,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// GetView() looks for files inside plugins/PluginFolderName/views/ and returns their full path. Useful!
 		$Sender->Render($this->GetView('cronjobs_settings_view.php'));
 	}
-
 
 	/**
 	 * Displays a page showing all Cron Jobs registered by plugins.
@@ -322,6 +317,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 		}
 		else {
 			//var_dump($Sender->Form->FormValues());
+
+			// TODO Handle saving of some settings (e.g. Enable/Disable Job) on the page
 			//$Saved = $Sender->Form->Save();
 			//
 			//if ($Saved) {
@@ -348,6 +345,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 
 			// Save time of execution, which will be used for throttling.
 			SaveToConfig('Plugin.CronJobs.LastRun', mktime());
+
+			// TODO Move Cron Execution Counters to a database table
 			// Increment counters
 			SaveToConfig('Plugin.CronJobs.MinuteRuns', intval(C('Plugin.CronJobs.MinuteRuns')) + 1);
 			SaveToConfig('Plugin.CronJobs.HourRuns', intval(C('Plugin.CronJobs.HourRuns')) + 1);
@@ -389,9 +388,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 
 		$Sender->SetData('CurrentPath', CRON_HISTORY_URL);
 
-		$Sender->Form->Method = 'get';
 		// If seeing the form for the first time...
-		if ($Sender->Form->IsPostBack() === FALSE) {
+		if ($Sender->Form->AuthenticatedPostBack() === FALSE) {
 			// Just show the form with the default values
 
 			// Default DateFrom is today
@@ -423,6 +421,34 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// GetView() looks for files inside plugins/PluginFolderName/views/ and returns their full path. Useful!
 		$Sender->Render($this->GetView('cronjobs_history_view.php'));
 	}
+
+	/**
+	 * Shows a page that displays the Status of Cron Jobs Throttling Counters and
+	 * allows to reset them.
+	 */
+	public function Controller_Status(&$Sender) {
+		// Prevent Users without proper permissions from accessing this page.
+		$Sender->Permission('Plugins.CronJobs.Manage');
+		$Sender->SetData('CurrentPath', CRON_STATUS_URL);
+
+		// If seeing the form for the first time...
+		if ($Sender->Form->AuthenticatedPostBack() === FALSE) {
+			// Just show the form with the default values
+		}
+		else {
+			// No validation is needed on submit, the only possible action is
+			// "Reset Counters"
+
+			// Reset Cron Execution Counters
+			$this->_ResetCronExecutionCounters($Sender->Form);
+
+			$Sender->InformMessage(T('Counters have been reset.'));
+		}
+
+		// GetView() looks for files inside plugins/PluginFolderName/views/ and returns their full path. Useful!
+		$Sender->Render($this->GetView('cronjobs_status_view.php'));
+	}
+
 
 	/**
 	* Add a link to the dashboard menu
@@ -519,7 +545,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 */
 	public function CronJobsPlugin_AfterCronJobExecute_Handler(&$Sender){
 		$CronExecData = $Sender->EventArguments['CronExecData'];
-		var_dump($CronExecData);
+
 		$InsertResult = $this->GetCronJobsHistoryModel()->Insert($CronExecData);
 	}
 

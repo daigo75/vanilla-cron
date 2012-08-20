@@ -67,29 +67,6 @@
 					echo Wrap(T('Specify how many times Cron can run in one day.'), 'p');
 					echo $this->Form->TextBox('Plugin.CronJobs.MaxRunsPerDay');
 				?></li>
-				<li><?php
-					echo $this->Form->CheckBox('ResetCounters', T('Reset Counters'), array('value' => 1,));
-					echo Wrap(T('By ticking this box, all Execution Counters will be reset when you\'ll click on Save.'), 'p');
-				?></li>
-			</ul>
-		</fieldset>
-		<fieldset>
-			<legend>
-				<h3><?php echo T('Status'); ?></h3>
-			</legend>
-			<ul>
-				<li><?php
-					echo sprintf(T('Date/Time of last Cron Run: %s'), date('Y-m-d H:i:s', intval(C('Plugin.CronJobs.LastRun'))));
-				?></li>
-				<li><?php
-					echo sprintf(T('Minute Calls: %d'), C('Plugin.CronJobs.MinuteRuns'));
-				?></li>
-				<li><?php
-					echo sprintf(T('Hour Calls: %d'), C('Plugin.CronJobs.HourRuns'));
-				?></li>
-				<li><?php
-					echo sprintf(T('Day Calls: %d'), C('Plugin.CronJobs.DayRuns'));
-				?></li>
 			</ul>
 		</fieldset>
 		<?php

@@ -57,6 +57,7 @@ function RenderTabItem($Label, $URL, array $Classes) {
 	<div class="Tabs">
 		<ul>
 			<?php
+				echo RenderTabItem(T('Status'), CRON_STATUS_URL, $TabsClasses);
 				echo RenderTabItem(T('Settings'), CRON_SETTINGS_URL, $TabsClasses);
 				echo RenderTabItem(T('View Configured Jobs'), CRON_REGISTERED_JOBS_URL, $TabsClasses);
 				echo RenderTabItem(T('View Execution History'), CRON_HISTORY_URL, $TabsClasses);

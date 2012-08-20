@@ -19,7 +19,6 @@
  * @copyright Copyright (c) 2011 Diego Zanella (http://dev.pathtoenlightenment.net)
  * @license http://opensource.org/licenses/GPL-2.0 GPL 2.0
 */
-
 ?>
 <div class="CronJobsPlugin">
 	<div class="PluginHeader">
@@ -32,43 +31,37 @@
 		?>
 		<fieldset>
 			<legend>
-				<h3><?php echo T('Date Range'); ?></h3>
-				<p>
-					<?php
-					echo T('In this section you can view a History of the Cron Jobs executions, with the' .
-								 'result of each job.');
-					?>
-				</p>
+				<h3><?php echo T('Cron Jobs Execution Counters'); ?></h3>
+				<p><?php
+					echo Wrap(sprintf(T('The Execution Counters indicate how many times the Cron process has been triggered ' .
+															'in the pase Minute, Hour and Day. If you attempt to trigger the Cron process and it ' .
+															'fails, please make sure that the Counters haven\'t exceeded the maximum amount of ' .
+															'executions allowed in %s page.'),
+														Anchor(T('Settings'), CRON_SETTINGS_URL)),
+										'p');
+					echo Wrap(T('If you wish to reset the counters without changing the configuration (e.g. for '.
+											'testing purposes), you can do so by clicking on <strong>Reset Counters</strong> button below.'),
+										'p');
+
+				?></p>
 			</legend>
-			<div class="FilterMenu">
-				<ul>
-					 <li><?php
-							echo $this->Form->Label(T('Start Date'), 'DateFrom');
-							echo $this->Form->Date('DateFrom');
-					 ?></li>
-					 <li><?php
-							echo $this->Form->Label(T('End Date'), 'DateTo');
-							echo $this->Form->Date('DateTo');
-					 ?></li>
-					 <li><?php
-							//echo $this->Form->Label(T('Results per Page'), 'ResultsPerPage');
-							//echo $this->Form->Textbox('ResultsPerPage');
-							echo $this->Form->Hidden('ResultsPerPage', array('value' => CRON_DEFAULT_HISTORYJOBSPERPAGE,));
-					 ?></li>
-				</ul>
-			</div>
+			<ul>
+				<li><?php
+					echo sprintf(T('Date/Time of last Cron Run: %s'), date('Y-m-d H:i:s', intval(C('Plugin.CronJobs.LastRun'))));
+				?></li>
+				<li><?php
+					echo sprintf(T('Minute Calls: %d'), C('Plugin.CronJobs.MinuteRuns'));
+				?></li>
+				<li><?php
+					echo sprintf(T('Hour Calls: %d'), C('Plugin.CronJobs.HourRuns'));
+				?></li>
+				<li><?php
+					echo sprintf(T('Day Calls: %d'), C('Plugin.CronJobs.DayRuns'));
+				?></li>
+			</ul>
 		</fieldset>
 		<?php
-			echo $this->Form->Close('Refresh');
+			echo $this->Form->Close('Reset Counters');
 		?>
-		<div class="Results">
-			<?php
-				$CronJobsHistoryDataSet = $this->Data['CronJobsHistoryDataSet'];
-
-				if(isset($CronJobsHistoryDataSet)) {
-					include('cronjobs_history_details.php');
-				}
-			?>
-		</div>
 	</div>
 </div>

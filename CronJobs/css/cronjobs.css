@@ -37,6 +37,14 @@
 	width: 62em;
 }
 
-.CronJobsPlugin fieldset {
-	width: 100%;
+.CronJobsPlugin fieldset p {
+	padding-left: 20px;
+}
+
+.CronJobsPlugin legend {
+	width: 100% !important;
+}
+
+#CronResult {
+	padding-left: 1em;
 }

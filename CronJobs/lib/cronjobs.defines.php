@@ -49,6 +49,7 @@ define('CRON_SETTINGS_URL', CRON_PLUGIN_BASE_URL);
 define('CRON_REGISTERED_JOBS_URL', CRON_PLUGIN_BASE_URL . '/jobs');
 define('CRON_HISTORY_URL', CRON_PLUGIN_BASE_URL . '/history');
 define('CRON_EXEC_URL', CRON_PLUGIN_BASE_URL . '/cron');
+define('CRON_STATUS_URL', CRON_PLUGIN_BASE_URL . '/status');
 
 // Return Codes
 define('CRON_EXEC_SUCCESS', 0);
