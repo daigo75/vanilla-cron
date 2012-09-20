@@ -592,7 +592,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		RemoveFromConfig('Plugin.CronJobs.CronKey');
 
 		// Drop Database Objects created by the Plugin
-		require('install/schema.php');
+		require('install/cronjobs.schema.php');
 		CronJobsSchema::Uninstall();
 	}
 
