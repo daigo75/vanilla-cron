@@ -65,9 +65,7 @@
 			<?php
 				$CronJobsHistoryDataSet = $this->Data['CronJobsHistoryDataSet'];
 
-				if(isset($CronJobsHistoryDataSet)) {
-					include('cronjobs_history_details.php');
-				}
+				include('cronjobs_history_details.php');
 			?>
 		</div>
 	</div>
