@@ -568,9 +568,23 @@ class CronJobsPlugin extends Gdn_Plugin {
 		SaveToConfig('Plugin.CronJobs.DayRuns', CRON_DEFAULT_DAYRUNS);
 		SaveToConfig('Plugin.CronJobs.CronKey', CRON_DEFAULT_CRONKEY);
 
+		// Create Route to redirect calls to /discussions to /listdiscussions
+		Gdn::Router()->SetRoute('^cron(/.*)?$',
+														sprintf('%s$1', CRON_EXEC_URL),
+														'Internal');
+
 		// Create Database Objects needed by the Plugin
 		require('install/cronjobs.schema.php');
 		CronJobsSchema::Install();
+	}
+
+	/**
+	 * Cleanup operations to be performend when the Plugin is disabled, but not
+	 * permanently removed.
+	 */
+	public function OnDisable() {
+		// Remove the Routes created by the Plugin.
+		Gdn::Router()->DeleteRoute('^cron(/.*)?$');
 	}
 
 	/**
