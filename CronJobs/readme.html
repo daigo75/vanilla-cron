@@ -6,7 +6,7 @@
 		font-family: Arial, Helvetica, sans-serif;
 		font-size: 14px;
 	}
-	
+
 	code {
 		background-color: #DDDDDD;
 	}
@@ -16,7 +16,7 @@
 <h1>CronJobs Plugin for Vanilla 2.0</h1>
 <h2>Description</h2>
 <div id="description">
-	<p>This plugins implements a Cron feature in Vanilla. It has been designed to allow 3rd party plugins to easily register themselves, allowing for some operations to be executed on a scheduled basis. 
+	<p>This plugins implements a Cron feature in Vanilla. It has been designed to allow 3rd party plugins to easily register themselves, allowing for some operations to be executed on a scheduled basis.
 	</p>
 	<p>
 		<strong>Note</strong>: this plugin is still in its Beta. Although some testing has been performed, there may be bugs I haven't yet found.
@@ -39,14 +39,14 @@
 	</div>
 	<div>
 		<h4>Running Cron Tasks</h4>
-		<p>Cron execution is triggered by simply opening the <code>plugin/cronjobs/cron</code> URL in your Vanilla installation.<br />
+		<p>Cron execution is triggered by simply opening the <code>/cron</code> URL in your Vanilla installation.<br />
 		<strong>Important</strong>: by default, Cron execution can be triggered at any time by anyone. However, the Plugin implements several security mechanisms to restrict access to such feature, such as IP Filtering, Security Key and Request Throttling.
 		</p>
 	</div>
 	<div>
 		<h4>Scheduling Cron Execution</h4>
 		<p>To schedule Cron Execution, create a CronTab task which will open such URL, for example using wget. In the following example, the crontab command shown below will activate the cron tasks automatically on the hour:<br />
-		<code>0 * * * * wget -O - -q -t 1 http://www.myvanilla.com/plugin/cronjobs/cron</code>
+		<code>0 * * * * wget -O - -q -t 1 http://www.myvanilla.com/cron</code>
 		</p>
 	</div>
 	<div>
