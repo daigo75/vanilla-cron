@@ -29,7 +29,6 @@ class CronJobsSchema extends PluginSchema {
 	protected function create_cronjobshistory_table() {
 		Gdn::Structure()
 			->Table('CronJobsHistory')
-			->Engine('MyISAM')
 			->PrimaryKey('CronJobsHistoryID')
 			->Column('ClassName', 'varchar(100)', FALSE, 'index')
 			->Column('StartedAt', 'datetime', FALSE)
