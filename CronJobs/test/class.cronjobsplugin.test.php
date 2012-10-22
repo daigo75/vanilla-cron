@@ -48,7 +48,12 @@ define('PATH_ROOT', getenv('VanillaRootDir'));
 //define('PATH_ROOT', 'C:\XAMPP\htdocs\vanilla');
 
 // 2. Include the bootstrap to configure the framework.
-echo sprintf('Loading bootstrap file: %s',
+echo sprintf("Loading bootstrap file: %s.\n" .
+						 "IMPORTANT: if no output is produced, it's probably because the bootstrap " .
+						 "file halted the process. One of the most common reasons is that Vanilla was not " .
+						 "installed or configured correctly by the build script. In such case, try to open " .
+						 "the forum home page. If it asks for configuration parameters, then the setup was " .
+						 "not completed correctly.\n",
 						 PATH_ROOT . '/bootstrap.php');
 require_once(PATH_ROOT . '/bootstrap.php');
 echo 'Bootstrap completed.';
