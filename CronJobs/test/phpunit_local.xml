@@ -12,7 +12,7 @@
 	strict="true">
 
 	<php>
-		<env name="VanillaRootDir" value="C:\XAMPP\htdocs\vanilla" />
+		<env name="VanillaRootDir" value="C:\wamp\www\vanilla" />
 		<env name="VanillaVersion" value="2.0.18.4" />
 	</php>
 
