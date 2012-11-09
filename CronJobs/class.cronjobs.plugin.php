@@ -245,7 +245,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		$this->FireEvent('CronJobRegister');
 
 		// Forward the call to the appropriate method.
-		$this->Dispatch(&$Sender, $Sender->RequestArgs);
+		$this->Dispatch($Sender, $Sender->RequestArgs);
 	}
 
 	/**
