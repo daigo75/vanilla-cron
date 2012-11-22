@@ -31,7 +31,7 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
-	'Version' => '12.11.09',
+	'Version' => '12.11.22',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
 	'RequiredPlugins' => FALSE,
@@ -120,7 +120,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 *
 	 * @return True if the request is authorized, False otherwise.
 	 */
-	protected function _IsRequestAuthorized(&$Sender) {
+	protected function _IsRequestAuthorized($Sender) {
 		$CronKey = (C('Plugin.CronJobs.CronKey') != '') ? C('Plugin.CronJobs.CronKey') : null;
 
 		// Cron Key is optional, but it must match if it was set in configuration.
@@ -141,7 +141,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		return true;
 	}
 
-	protected function _CheckExecutionLimits(&$Sender) {
+	protected function _CheckExecutionLimits($Sender) {
 		$LastRun = C('Plugin.CronJobs.LastRun');
 		$Now = mktime();
 
@@ -222,12 +222,12 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*
 	* @param $Sender Sending controller instance
 	*/
-	public function Base_Render_Before(&$Sender) {
+	public function Base_Render_Before($Sender) {
 		$Sender->AddCssFile($this->GetResource('css/cronjobs.css', FALSE, FALSE));
 		$Sender->AddJsFile($this->GetResource('js/cronjobs.js', FALSE, FALSE));
 	}
 
-	public function PluginController_CronJobs_Create(&$Sender) {
+	public function PluginController_CronJobs_Create($Sender) {
 		// Initialize Model for Cron Jobs List
 		$this->CronJobsList = new CronJobsListModel();
 
@@ -251,7 +251,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	/**
 	 * Default Controller. It opens Plugin's Settings Page.
 	 */
-	public function Controller_Index(&$Sender) {
+	public function Controller_Index($Sender) {
 		// Prevent non-admins from accessing this page
 		$Sender->Permission('Vanilla.Settings.Manage');
 
@@ -299,7 +299,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	/**
 	 * Displays a page showing all Cron Jobs registered by plugins.
 	 */
-	public function Controller_Jobs(&$Sender) {
+	public function Controller_Jobs($Sender) {
 		// Prevent Users without proper permissions from accessing this page.
 		$Sender->Permission('Plugins.CronJobs.Manage');
 		$Sender->SetData('CurrentPath', CRON_REGISTERED_JOBS_URL);
@@ -336,7 +336,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * by simply accessing the URL (e.g. http://myserver/vanilla/plugin/cron), or
 	 * through a "wget" scheduled to run using Linux Cron or Windows Scheduler.
 	 */
-	public function Controller_Cron(&$Sender) {
+	public function Controller_Cron($Sender) {
 		// Check that request is legitimate and that Cron execution limits
 		// have not been exceeded.
 		if($this->_IsRequestAuthorized($Sender) &&
@@ -382,7 +382,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * Shows a page that allows to view the History of Cron Jobs Executions in
 	 * a period of time.
 	 */
-	public function Controller_History(&$Sender) {
+	public function Controller_History($Sender) {
 		// Prevent Users without proper permissions from accessing this page.
 		$Sender->Permission('Plugins.CronJobs.Manage');
 
@@ -426,7 +426,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * Shows a page that displays the Status of Cron Jobs Throttling Counters and
 	 * allows to reset them.
 	 */
-	public function Controller_Status(&$Sender) {
+	public function Controller_Status($Sender) {
 		// Prevent Users without proper permissions from accessing this page.
 		$Sender->Permission('Plugins.CronJobs.Manage');
 		$Sender->SetData('CurrentPath', CRON_STATUS_URL);
@@ -458,8 +458,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*
 	* @param $Sender Sending controller instance
 	*/
-	public function Base_GetAppSettingsMenuItems_Handler(&$Sender) {
-		$Menu = &$Sender->EventArguments['SideMenu'];
+	public function Base_GetAppSettingsMenuItems_Handler($Sender) {
+		$Menu = $Sender->EventArguments['SideMenu'];
 		$Menu->AddLink('Add-ons', 'Cron Jobs', 'plugin/cronjobs', 'Garden.AdminUser.Only');
 	}
 
@@ -536,14 +536,14 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * Handler for event CronJobsPlugin_BeforeCronJobExecute. Used for debugging
 	 * purposes only.
 	 */
-	public function CronJobsPlugin_BeforeCronJobExecute_Handler(&$Sender){
+	public function CronJobsPlugin_BeforeCronJobExecute_Handler($Sender){
 	}
 
 	/**
 	 * Handler for event CronJobsPlugin_AfterCronJobExecute. Used for logging
 	 * execution results and for debugging purposes.
 	 */
-	public function CronJobsPlugin_AfterCronJobExecute_Handler(&$Sender){
+	public function CronJobsPlugin_AfterCronJobExecute_Handler($Sender){
 		$CronExecData = $Sender->EventArguments['CronExecData'];
 
 		$InsertResult = $this->GetCronJobsHistoryModel()->Insert($CronExecData);
@@ -622,7 +622,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	/**
 	 * Register plugin for Cron Jobs.
 	 */
-	public function CronJobsPlugin_CronJobRegister_Handler(&$Sender){
+	public function CronJobsPlugin_CronJobRegister_Handler($Sender){
 		$Sender->RegisterCronJob($this);
 	}
 }

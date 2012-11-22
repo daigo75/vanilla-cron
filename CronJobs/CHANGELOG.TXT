@@ -6,7 +6,10 @@ Change log
 - Added informational message in Cron History page, displayed when no data is
 	found.
 - Added creation of an alias path "/cron", which can be used to trigger the Cron
-	execution instead of the canonical "/plugins/cronjobs/cron".
+	execution instead of the canonical "/plugins/cronjobs/cron"
 
 12.11.09
-- Removed all "calls by reference" for compatibility with PHP 5.4+
+- Removed all calls by reference for compatibility with PHP 5.4+
+
+12.11.22
+- Removed calls by reference missed during previous cleanup
