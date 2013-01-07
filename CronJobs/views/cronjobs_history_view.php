@@ -63,7 +63,7 @@
 		?>
 		<div class="Results">
 			<?php
-				$CronJobsHistoryDataSet = $this->Data['CronJobsHistoryDataSet'];
+				$CronJobsHistoryDataSet = GetValue('CronJobsHistoryDataSet', $this->Data, null);
 
 				include('cronjobs_history_details.php');
 			?>

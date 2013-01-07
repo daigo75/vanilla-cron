@@ -313,7 +313,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// If seeing the form for the first time...
 		if ($Sender->Form->AuthenticatedPostBack() === FALSE) {
 			// Apply the config settings to the form.
-			$Sender->Form->SetData($ConfigurationModel->Data);
+			//$Sender->Form->SetData($ConfigurationModel->Data);
 		}
 		else {
 			//var_dump($Sender->Form->FormValues());
