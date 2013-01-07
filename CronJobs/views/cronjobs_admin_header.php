@@ -46,7 +46,7 @@ function RenderTabItem($Label, $URL, array $Classes) {
 	$Result = sprintf("<li class=\"%s\">\n" .
 										"	<span>%s</span>\n" .
 										"</li>\n",
-										$Classes[$URL],
+										GetValue($URL, $Classes, ''),
 										Anchor($Label, $URL));
 	return $Result;
 }
