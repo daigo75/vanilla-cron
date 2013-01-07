@@ -13,3 +13,6 @@ Change log
 
 12.11.22
 - Removed calls by reference missed during previous cleanup
+
+13.01.07
+- Fixed minor bugs that would throw an error if PHP Error Level was set to throw errors on NOTICE messages.
