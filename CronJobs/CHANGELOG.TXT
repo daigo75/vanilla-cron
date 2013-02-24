@@ -16,3 +16,6 @@ Change log
 
 13.01.07
 - Fixed minor bugs that would throw an error if PHP Error Level was set to throw errors on NOTICE messages.
+
+13.02.24
+- Fixed bug in creation of shortcut Cron route
