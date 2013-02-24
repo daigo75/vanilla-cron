@@ -19,3 +19,4 @@ Change log
 
 13.02.24
 - Fixed bug in creation of shortcut Cron route
+- Fixed bug in execution of Cron Jobs
