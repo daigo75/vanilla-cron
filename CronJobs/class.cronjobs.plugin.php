@@ -176,7 +176,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 *
 	 * @return void.
 	 */
-	protected function _ResetCronExecutionCounters(&$Form) {
+	protected function _ResetCronExecutionCounters($Form) {
 		// TODO Move Cron Execution Counters to a database table
 		SaveToConfig('Plugin.CronJobs.DayRuns', 0);
 		SaveToConfig('Plugin.CronJobs.HourRuns', 0);
@@ -455,7 +455,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 *
 	 * @Return True if registration was successful, False otherwise.
 	 */
-	public function RegisterCronJob(&$Object) {
+	public function RegisterCronJob($Object) {
 		return $this->CronJobsList->Add($Object);
 	}
 
@@ -489,12 +489,12 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 *
 	 * @return TRUE if Object's Cron ran successfully, FALSE otherwise.
 	 */
-	protected function _RunCronJob(&$Object) {
+	protected function _RunCronJob($Object) {
 		$CronExecData = new CronJobExecutionDataModel(get_class($Object), date('Y-m-d H:i:s'));
 		$this->FireEvent('BeforeCronJobExecute');
 
 		try {
-			$JobResult = call_user_func(array($ObjectName, 'Cron'));
+			$JobResult = call_user_func(array($Object, 'Cron'));
 
 			$CronExecData->SetResultData(CRON_EXEC_SUCCESS, T('Success'));
 		}
