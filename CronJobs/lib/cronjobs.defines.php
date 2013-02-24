@@ -1,23 +1,6 @@
 <?php if (!defined('APPLICATION')) exit();
 /**
- * Copyright 2012 Diego Zanella
- * This file is part of CronJobs Plugin for Vanilla Forums.
- *
- * CronJobs Plugin is free software: you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or (at your
- * option) any later version.
- * Plugin is distributed in the hope that it will be
- * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
- * Public License for more details.
- * You should have received a copy of the GNU General Public License along with
- * CronJobs Plugin. If not, see http://opensource.org/licenses/GPL-2.0.
- *
- * @package CronJobs Plugin
- * @author Diego Zanella <diego@pathtoenlightenment.net>
- * @copyright Copyright (c) 2011 Diego Zanella (http://dev.pathtoenlightenment.net)
- * @license http://opensource.org/licenses/GPL-2.0 GPL 2.0
+{licence}
 */
 
 
@@ -50,6 +33,9 @@ define('CRON_REGISTERED_JOBS_URL', CRON_PLUGIN_BASE_URL . '/jobs');
 define('CRON_HISTORY_URL', CRON_PLUGIN_BASE_URL . '/history');
 define('CRON_EXEC_URL', CRON_PLUGIN_BASE_URL . '/cron');
 define('CRON_STATUS_URL', CRON_PLUGIN_BASE_URL . '/status');
+
+// Regular Expression that will be used to create a shortcut route for Cron execution script
+define('CRON_EXEC_ROUTE_REGEX', '^cron/?\??(.*)$');
 
 // Return Codes
 define('CRON_EXEC_SUCCESS', 0);

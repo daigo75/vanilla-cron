@@ -1,23 +1,6 @@
 <?php if (!defined('APPLICATION')) exit();
 /**
- * Copyright 2012 Diego Zanella
- * This file is part of CronJobs Plugin for Vanilla Forums.
- *
- * CronJobs Plugin is free software: you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or (at your
- * option) any later version.
- * Plugin is distributed in the hope that it will be
- * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
- * Public License for more details.
- * You should have received a copy of the GNU General Public License along with
- * CronJobs Plugin. If not, see http://opensource.org/licenses/GPL-2.0.
- *
- * @package CronJobs Plugin
- * @author Diego Zanella <diego@pathtoenlightenment.net>
- * @copyright Copyright (c) 2011 Diego Zanella (http://dev.pathtoenlightenment.net)
- * @license http://opensource.org/licenses/GPL-2.0 GPL 2.0
+ {licence}
 */
 
 // File cronjobs.defines.php must be included by manually specifying the whole
@@ -34,7 +17,7 @@ $PluginInfo['CronJobs'] = array(
 	'Version' => '13.01.07',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
-	'RequiredPlugins' => FALSE,
+  'RequiredPlugins' => array('Logger' => '13.02.01'),
 	'HasLocale' => FALSE,
 	'SettingsUrl' => '/plugin/cronjobs',
 	'SettingsPermission' => 'Garden.AdminUser.Only',
@@ -45,12 +28,11 @@ $PluginInfo['CronJobs'] = array(
 );
 
 class CronJobsPlugin extends Gdn_Plugin {
-	/// Contains a list of registered Jobs.
-	/// @see CronJobListModel
+	// @var array Contains a list of registered Jobs.
+	// @see CronJobListModel
 	protected $CronJobsList;
 
-	/// Contains an instance of CronJobsHistoryModel
-	/// @see $CronJobsHistoryModel
+	// @var Contains an instance of CronJobsHistoryModel
 	protected $CronJobsHistoryModel;
 
 	/**
@@ -195,7 +177,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * @return void.
 	 */
 	protected function _ResetCronExecutionCounters(&$Form) {
-			// TODO Move Cron Execution Counters to a database table
+		// TODO Move Cron Execution Counters to a database table
 		SaveToConfig('Plugin.CronJobs.DayRuns', 0);
 		SaveToConfig('Plugin.CronJobs.HourRuns', 0);
 		SaveToConfig('Plugin.CronJobs.MinuteRuns', 0);
@@ -449,7 +431,6 @@ class CronJobsPlugin extends Gdn_Plugin {
 		$Sender->Render($this->GetView('cronjobs_status_view.php'));
 	}
 
-
 	/**
 	* Add a link to the dashboard menu
 	*
@@ -569,8 +550,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 		SaveToConfig('Plugin.CronJobs.CronKey', CRON_DEFAULT_CRONKEY);
 
 		// Create Route to redirect calls to /discussions to /listdiscussions
-		Gdn::Router()->SetRoute('^cron(/.*)?$',
-														sprintf('%s$1', CRON_EXEC_URL),
+		Gdn::Router()->SetRoute(CRON_EXEC_ROUTE_REGEX,
+														CRON_EXEC_URL . '/?$1',
 														'Internal');
 
 		// Create Database Objects needed by the Plugin
@@ -584,7 +565,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 */
 	public function OnDisable() {
 		// Remove the Routes created by the Plugin.
-		Gdn::Router()->DeleteRoute('^cron(/.*)?$');
+		Gdn::Router()->DeleteRoute(CRON_EXEC_ROUTE_REGEX);
 	}
 
 	/**
