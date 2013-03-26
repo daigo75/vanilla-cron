@@ -20,3 +20,7 @@ Change log
 13.02.24
 - Fixed bug in creation of shortcut Cron route
 - Fixed bug in execution of Cron Jobs
+
+13.02.26
+- Removed calls to deprecated functions
+- Fixed bug in logging mechanism after the execution of Cron Jobs

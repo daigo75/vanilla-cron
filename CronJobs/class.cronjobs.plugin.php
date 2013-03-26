@@ -14,7 +14,7 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
-	'Version' => '13.02.24',
+	'Version' => '13.03.26',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
   'RequiredPlugins' => array('Logger' => '13.02.01'),
@@ -113,7 +113,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 		}
 
 		// The request must come from an authorized IP Address.
-		$ValidIPAddresses = split(';', C('Plugin.CronJobs.AllowedIPAddresses'));
+		$ValidIPAddresses = explode(';', C('Plugin.CronJobs.AllowedIPAddresses'));
 		if(!ValidateIPAddressInList(RemoteIP(), $ValidIPAddresses)) {
 			$Sender->SetData('CronExecResult', CRON_ERR_IPNOTALLOWED);
 
@@ -501,9 +501,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 		catch (Exception $e) {
 			// Catch any unhandled error and save its details to allow logging it to
 			// Cron Job Execution History.
-			$CronExecData->SetResultData($e->getCode(), T('Success'),
-																									sprintf(T("Failure. Exception details below.\n"),
-																													$e->__toString()));
+			$CronExecData->SetResultData($e->getCode(), sprintf(T('Failure. Exception details: %s.'),
+																													$e->getMessage()));
 		}
 		$CronExecData->SetFinishedAt(date('Y-m-d H:i:s'));
 
