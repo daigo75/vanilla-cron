@@ -12,7 +12,7 @@
 	strict="true">
 
 	<testsuite name="CronJob Plugin">
-		<!--<directory suffix="test.php">./</directory>-->
+		<directory suffix="test.php">./</directory>
 	</testsuite>
 
 	<logging>
