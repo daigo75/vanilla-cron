@@ -20,7 +20,7 @@ $PluginInfo['CronJobs'] = array(
   'RequiredPlugins' => array('Logger' => '13.02.01'),
 	'HasLocale' => FALSE,
 	'SettingsUrl' => '/plugin/cronjobs',
-	'SettingsPermission' => 'Garden.AdminUser.Only',
+	'SettingsPermission' => 'Garden.Settings.Manage',
 	'Author' => 'Diego Zanella',
 	'AuthorEmail' => 'diego@pathtoenlightenment.net',
 	'AuthorUrl' => 'http://dev.pathtoenlightenment.net',
@@ -441,7 +441,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	*/
 	public function Base_GetAppSettingsMenuItems_Handler($Sender) {
 		$Menu = $Sender->EventArguments['SideMenu'];
-		$Menu->AddLink('Add-ons', 'Cron Jobs', 'plugin/cronjobs', 'Garden.AdminUser.Only');
+		$Menu->AddLink('Add-ons', 'Cron Jobs', 'plugin/cronjobs', 'Garden.Settings.Manage');
 	}
 
 	/**
