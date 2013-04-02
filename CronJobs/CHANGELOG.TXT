@@ -24,3 +24,6 @@ Change log
 13.02.26
 - Removed calls to deprecated functions
 - Fixed bug in logging mechanism after the execution of Cron Jobs
+
+13.04.02
+- Corrected issue with permissions. Previous versions allowed only SuperAdmin to access Plugin's settings.
