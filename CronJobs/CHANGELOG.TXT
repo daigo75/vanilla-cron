@@ -1,6 +1,4 @@
-Cron Plugin for Vanilla Forums
-
-Change log
+Cron Plugin for Vanilla Forums - Change log
 
 12.09.28
 - Added informational message in Cron History page, displayed when no data is
