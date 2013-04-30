@@ -80,8 +80,8 @@ class CronJobsHistoryModel extends Gdn_Model {
 		// Return the Jobs Started within the Date Range.
 		$this->PrepareCronJobsHistoryQuery();
 		$Result = $this->SQL
-			->Where('StartedAt >=', array("DATE('%s')" => $DateFrom,), TRUE, FALSE)
-			->Where('FinishedAt <', array("DATE('%s')" => $DateTo,), TRUE, FALSE)
+			->Where('StartedAt >=', "DATE('$DateFrom')", TRUE, FALSE)
+			->Where('FinishedAt <', "DATE('$DateTo')", TRUE, FALSE)
 			->OrderBy('StartedAt', 'desc')
 			->Get();
 
