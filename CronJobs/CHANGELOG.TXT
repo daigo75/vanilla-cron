@@ -25,3 +25,6 @@ Cron Plugin for Vanilla Forums - Change log
 
 13.04.02
 - Corrected issue with permissions. Previous versions allowed only SuperAdmin to access Plugin's settings.
+
+13.04.30
+- Added compatibility with Vanilla 2.0.18.8
