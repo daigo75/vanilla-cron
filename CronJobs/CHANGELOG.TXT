@@ -28,3 +28,6 @@ Cron Plugin for Vanilla Forums - Change log
 
 13.04.30
 - Added compatibility with Vanilla 2.0.18.8
+
+13.05.06
+- Replaced deprecated functions with more recent ones
