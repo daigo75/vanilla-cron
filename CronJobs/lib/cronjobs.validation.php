@@ -27,7 +27,7 @@ if(!function_exists('ValidateIPAddressList')){
 	 * expected to be separated by a semicolon.
 	 */
 	function ValidateIPAddressList($Value, $Field, $FormPostedValues){
-		$IPAddresses = split(';', $Value);
+		$IPAddresses = explode(';', $Value);
 
 		foreach($IPAddresses as $IPAddress) {
 			// No need to continue if even just one IP Address is wrong. Let the
