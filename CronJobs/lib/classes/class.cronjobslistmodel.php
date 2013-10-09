@@ -8,7 +8,6 @@
  *
  * @package CronPlugin
  */
-
 /**
  * Allows to read/write Cron Jobs List table, which contains a list of the Cron
  * Jobs registered by Plugins and configured in the system.
@@ -57,7 +56,7 @@ class CronJobsListModel extends Gdn_Model {
 	 *
 	 * @return True if Object was registered successfully, False otherwise.
 	 */
-	public function Add(&$Object) {
+	public function Add($Object) {
 		// Null Objects can't be registered for obvious reasons, and should never
 		// be passed to this function (hence the Exception).
 		if(!is_object($Object)) {
@@ -67,8 +66,8 @@ class CronJobsListModel extends Gdn_Model {
 
 		// Throw an exception if an Object which doesn't have a public Cron method
 		// attempts to register itself for Cron.
-		if(!ObjectImplementsCron($Object)) {
-			throw new InvalidArgumentException(T('Parameter $Object doesn\'t have a public Cron() method.'), CRON_ERR_CRON_METHOD_UNDEFINED);
+		if(!class_implements($Object, 'ICronTask')) {
+			throw new InvalidArgumentException(T('Parameter $Object must implement ICronTask interface.'), CRON_ERR_CRON_METHOD_UNDEFINED);
 			return false;
 		}
 
