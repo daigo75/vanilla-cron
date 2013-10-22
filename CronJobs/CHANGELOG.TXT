@@ -31,3 +31,6 @@ Cron Plugin for Vanilla Forums - Change log
 
 13.05.06
 - Replaced deprecated functions with more recent ones
+
+13.10.09
+- Improved check for registered Cron tasks
