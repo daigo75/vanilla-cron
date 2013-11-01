@@ -34,3 +34,6 @@ Cron Plugin for Vanilla Forums - Change log
 
 13.10.09
 - Improved check for registered Cron tasks
+
+13.11.01
+- Removed ICron interface to allow consumer classes not to have a hard dependency on Cron plugin

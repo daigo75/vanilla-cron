@@ -59,6 +59,19 @@ if(!function_exists('ValidateIPAddressInList')){
 	}
 }
 
+if(!function_exists('ObjectImplementsCron')){
+	/**
+	 * Checks if an Object implements Cron() method.
+	 *
+	 * @param Object The object which should be implementing a Cron() method.
+	 *
+	 * @return True if Object has a Cron method, False otherwise.
+	 */
+	function ObjectImplementsCron(&$Object){
+		return method_exists($Object, 'Cron');
+	}
+}
+
 if (!function_exists('ValidatePositiveInteger')) {
 		/**
 		 * Check that a value is a positive Integer.

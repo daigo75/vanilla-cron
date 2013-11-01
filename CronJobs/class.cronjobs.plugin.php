@@ -14,7 +14,7 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
-	'Version' => '13.10.09',
+	'Version' => '13.11.01',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
   'RequiredPlugins' => array('Logger' => '13.02.01'),
@@ -469,7 +469,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			// NOTE: this is actually a second check, just to be on the safe side.
 			// The presence of a public Cron() method is also verified when Objects
 			// register to the Cron List.
-			if(!class_implements($Object, 'ICronTask')) {
+			if(!ObjectImplementsCron($Object)) {
 				// TODO Use Logger to log the fact that an Object registered for Cron doesn't have a Cron method.
 				// If Object doesn't implement Cron(), just ignore it.
 				continue;
@@ -605,11 +605,4 @@ class CronJobsPlugin extends Gdn_Plugin {
 	public function CronJobsPlugin_CronJobRegister_Handler($Sender){
 		$Sender->RegisterCronJob($this);
 	}
-}
-
-/**
- * Interface for the implementation of a Cron Task class.
- */
-interface ICronTask {
-	public function Cron();
 }
