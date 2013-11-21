@@ -37,3 +37,6 @@ Cron Plugin for Vanilla Forums - Change log
 
 13.11.01
 - Removed ICron interface to allow consumer classes not to have a hard dependency on Cron plugin
+
+13.11.21
+- Added possibility to specify under which user to execute the Cron jobs

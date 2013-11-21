@@ -26,6 +26,13 @@
 			</legend>
 			<ul>
 				<li><?php
+					echo $this->Form->Label(T('Run Cron as the following user'), 'Plugin.CronJobs.CronUser');
+					echo Wrap(sprintf(T('Specify which user account should be used to run the Cron process. ' .
+															'leave the field empty to run the process as a Guest.'), 'p'));
+					echo $this->Form->TextBox('Plugin.CronJobs.CronUser',
+																		array('class' => 'User Autocomplete',));
+				?></li>
+				<li><?php
 					echo $this->Form->Label(T('Allowed IP Addresses'), 'Plugin.CronJobs.AllowedIPAddresses');
 					echo Wrap(sprintf(T('Specify which IP Addresses are allowed to run Cron by calling its <a href="%s">URL</a>. They can be specified as IPv4 or IPv6.'), CRON_EXEC_URL), 'p');
 					echo $this->Form->TextBox('Plugin.CronJobs.AllowedIPAddresses');

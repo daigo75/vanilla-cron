@@ -14,7 +14,7 @@ require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
-	'Version' => '13.11.01',
+	'Version' => '13.11.21',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
   'RequiredPlugins' => array('Logger' => '13.02.01'),
@@ -205,8 +205,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	* @param $Sender Sending controller instance
 	*/
 	public function Base_Render_Before($Sender) {
-		$Sender->AddCssFile($this->GetResource('css/cronjobs.css', FALSE, FALSE));
-		$Sender->AddJsFile($this->GetResource('js/cronjobs.js', FALSE, FALSE));
+		$Sender->AddCssFile('cronjobs.css', 'plugins/CronJobs/css');
 	}
 
 	public function PluginController_CronJobs_Create($Sender) {
@@ -237,6 +236,9 @@ class CronJobsPlugin extends Gdn_Plugin {
 		// Prevent non-admins from accessing this page
 		$Sender->Permission('Vanilla.Settings.Manage');
 
+		$Sender->AddJsFile('jquery.autocomplete.js');
+		$Sender->AddJsFile('settings.js', 'plugins/CronJobs/js');
+
 		$Sender->SetData('PluginDescription', $this->GetPluginKey('Description'));
 		$Sender->SetData('CurrentPath', CRON_SETTINGS_URL);
 
@@ -256,6 +258,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 			'Plugin.CronJobs.HourRuns' => CRON_DEFAULT_HOURRUNS,
 			'Plugin.CronJobs.DayRuns' => CRON_DEFAULT_DAYRUNS,
 			'Plugin.CronJobs.CronKey' => CRON_DEFAULT_CRONKEY,
+			'Plugin.CronJobs.CronUser' => '',
 		));
 
 		// Set the model on the form.
@@ -463,6 +466,16 @@ class CronJobsPlugin extends Gdn_Plugin {
 	 * Processes the list of Cron Jobs, executing them one by one.
 	 */
 	protected function _ProcessCronJobs() {
+		// Run Cron jobs as the user specified in the configuration
+		if(!Gdn::Session()->IsValid()) {
+			$CronUser = C('Plugin.CronJobs.CronUser');
+			$CronUserID = GetValue('UserID', Gdn::UserModel()->GetByUsername($CronUser));
+
+			if(!empty($CronUserID)) {
+				Gdn::Session()->Start($CronUserID);
+			}
+		}
+
 		foreach ($this->CronJobsList->Get() as $Class => $Object) {
 			// This check uses a global Validation function. A Validator is not
 			// used here as it would be overkill.
@@ -480,6 +493,8 @@ class CronJobsPlugin extends Gdn_Plugin {
 			// debugging and other purposes.
 			$this->_RunCronJob($Object);
 		}
+
+		Gdn::Session()->End();
 	}
 
 	/**
