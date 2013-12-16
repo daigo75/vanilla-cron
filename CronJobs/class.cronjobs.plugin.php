@@ -3,12 +3,10 @@
  {licence}
 */
 
-// File cronjobs.defines.php must be included by manually specifying the whole
-// path. It will then define some shortcuts for commonly used paths, such as
-// CRON_PLUGIN_LIB_PATH, used just below.
-require(PATH_PLUGINS . '/CronJobs/lib/cronjobs.defines.php');
-// CRON_PLUGIN_LIB_PATH is defined in cronjobs.defines.php.
-require(CRON_PLUGIN_LIB_PATH . '/cronjobs.validation.php');
+require('lib/cronjobs.defines.php');
+require('lib/cronjobs.validation.php');
+// Load Plugin's Autoloader
+require_once(CRON_PLUGIN_PATH . '/vendor/autoload.php');
 
 // Define the plugin:
 $PluginInfo['CronJobs'] = array(
