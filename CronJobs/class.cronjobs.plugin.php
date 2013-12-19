@@ -110,12 +110,15 @@ class CronJobsPlugin extends Gdn_Plugin {
 			return false;
 		}
 
-		// The request must come from an authorized IP Address.
+		// The request must come from an authorized IP Address, unless the IP Address
+		// list is empty
 		$ValidIPAddresses = explode(';', C('Plugin.CronJobs.AllowedIPAddresses'));
-		if(!ValidateIPAddressInList(RemoteIP(), $ValidIPAddresses)) {
-			$Sender->SetData('CronExecResult', CRON_ERR_IPNOTALLOWED);
+		if(!empty($ValidIPAddresses)) {
+			if(!ValidateIPAddressInList(RemoteIP(), $ValidIPAddresses)) {
+				$Sender->SetData('CronExecResult', CRON_ERR_IPNOTALLOWED);
 
-			return false;
+				return false;
+			}
 		}
 
 		return true;
