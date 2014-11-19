@@ -12,7 +12,7 @@ require_once(CRON_PLUGIN_PATH . '/vendor/autoload.php');
 $PluginInfo['CronJobs'] = array(
 	'Name' => 'Cron Jobs',
 	'Description' => 'Allows other plugins to register actions that will be executed on a scheduled basis.',
-	'Version' => '13.11.21',
+	'Version' => '14.11.19',
 	'RequiredApplications' => array('Vanilla' => '>=2.0.10'),
 	'RequiredTheme' => FALSE,
   'RequiredPlugins' => array('Logger' => '13.02.01'),
@@ -469,6 +469,7 @@ class CronJobsPlugin extends Gdn_Plugin {
 	protected function _ProcessCronJobs() {
 		// Run Cron jobs as the user specified in the configuration
 		if(!Gdn::Session()->IsValid()) {
+			$CronStartedSession = true;
 			$CronUser = C('Plugin.CronJobs.CronUser');
 			$CronUserID = GetValue('UserID', Gdn::UserModel()->GetByUsername($CronUser));
 
@@ -495,7 +496,10 @@ class CronJobsPlugin extends Gdn_Plugin {
 			$this->_RunCronJob($Object);
 		}
 
-		Gdn::Session()->End();
+		// If a session was started for Cron purposes, terminate it
+		if(!empty($CronStartedSession)) {
+			Gdn::Session()->End();
+		}
 	}
 
 	/**

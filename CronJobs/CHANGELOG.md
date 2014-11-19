@@ -1,5 +1,8 @@
 #Cron Plugin for Vanilla Forums * Change log
 
+####14.11.19
+* Fixed bug in session handling during execution of Cron process.
+
 ####13.12.19
 * Added possibility of allowing requests from all IP Addresses
 * Minor cosmetic adjustments to general settings page
