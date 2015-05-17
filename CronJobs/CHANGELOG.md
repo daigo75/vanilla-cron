@@ -1,5 +1,8 @@
 #Cron Plugin for Vanilla Forums * Change log
 
+####14.11.19b
+* Minor version change, just to be able to update the ZIP file on the public repository.
+
 ####14.11.19
 * Fixed bug in session handling during execution of Cron process.
 
